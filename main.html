@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCETE 2026 | CBIT</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', // Blue 900
+                        secondary: '#3b82f6', // Blue 500
+                        accent: '#f59e0b', // Amber 500
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        telugu: ['"Noto Sans Telugu"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .telugu {
+            font-family: 'Noto Sans Telugu', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.95)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-secondary selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 sm:gap-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
+                        CBIT
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg sm:text-xl text-primary leading-tight">RCETE <span class="text-accent">2026</span></h1>
+                        <p class="text-[9px] sm:text-[10px] text-gray-500 font-medium telugu">ఆర్సీఈటీఈ 2026</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu (Hidden on smaller screens) -->
+                <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+                    <a href="#home" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>Home</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">హోమ్</div>
+                    </a>
+                    <a href="#about" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>About</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">గురించి</div>
+                    </a>
+                    <a href="#topics" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>Topics</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">అంశాలు</div>
+                    </a>
+                    <a href="#dates" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>Dates</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">తేదీలు</div>
+                    </a>
+                    <a href="#schedule" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>Schedule</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">షెడ్యూల్</div>
+                    </a>
+                    <a href="#speakers" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>Speakers</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">వక్తలు</div>
+                    </a>
+                    <a href="#committee" class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
+                        <div>Committee</div><div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">కమిటీ</div>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none p-2 rounded-md hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 top-20 transition-all origin-top">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#home" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Home <span class="text-xs text-gray-400 telugu ml-2">హోమ్</span></a>
+                <a href="#about" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">About <span class="text-xs text-gray-400 telugu ml-2">గురించి</span></a>
+                <a href="#topics" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Topics <span class="text-xs text-gray-400 telugu ml-2">అంశాలు</span></a>
+                <a href="#dates" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Dates <span class="text-xs text-gray-400 telugu ml-2">తేదీలు</span></a>
+                <a href="#schedule" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Schedule <span class="text-xs text-gray-400 telugu ml-2">షెడ్యూల్</span></a>
+                <a href="#speakers" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Speakers <span class="text-xs text-gray-400 telugu ml-2">వక్తలు</span></a>
+                <a href="#committee" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Committee <span class="text-xs text-gray-400 telugu ml-2">కమిటీ</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg min-h-screen flex items-center relative pt-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-blue-900/85 md:from-primary/90 md:to-blue-900/80"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="text-center max-w-5xl mx-auto mt-8 sm:mt-12">
+                
+                <div class="inline-flex items-center justify-center flex-wrap gap-2 bg-accent/20 text-accent border border-accent/30 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide mb-6 backdrop-blur-sm">
+                    <i class="fas fa-calendar-alt"></i> 14-15 November 2026 <span class="hidden sm:inline">|</span> <span class="telugu text-xs font-normal">14-15 నవంబర్ 2026</span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                    Regional Conference in <br class="hidden sm:block"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-accent">Emerging Trends in Engineering</span>
+                </h1>
+                
+                <h2 class="text-xl sm:text-2xl md:text-3xl text-blue-200 mb-6 sm:mb-8 telugu font-medium leading-relaxed px-2">
+                    అభియంత్రిక శాస్త్రం లో ఉద్భవిస్తున్న ధోరణులు పై ప్రాంతీయ సదస్సు
+                </h2>
+                
+                <p class="text-base sm:text-lg md:text-xl text-white mb-2 font-light px-4">
+                    We invite you to the leading Regional conference for Emerging technologies in Engineering.
+                </p>
+                <p class="text-sm sm:text-base md:text-lg text-blue-200 mb-8 sm:mb-10 telugu px-4">
+                    అభియంత్రిక శాస్త్రం లో ఉద్భవిస్తున్న సాంకేతిక పరిజ్ఞానాలు కోసం ప్రముఖ ప్రాంతీయ సదస్సుకు మేము మిమ్మల్ని ఆహ్వానిస్తున్నాము.
+                </p>
+
+                <!-- AICTE Vaani 2.0 Badge -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 rounded-2xl mx-auto mb-8 shadow-2xl relative overflow-hidden group w-full sm:w-11/12 max-w-3xl">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-10">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shrink-0 shadow-inner p-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/All_India_Council_for_Technical_Education_logo.png" alt="AICTE Logo" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/ffffff/1e3a8a?text=AICTE'">
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <p class="text-xs sm:text-sm md:text-base text-blue-200 uppercase tracking-widest font-bold mb-1">Sponsored & Supported By</p>
+                            <h3 class="text-lg sm:text-xl md:text-2xl text-white font-bold leading-tight">AICTE - VAANI 2.0 Scheme</h3>
+                            <p class="text-accent font-medium mt-1 text-xs sm:text-sm md:text-base">Vibrant Advocacy for Advancement and Nurturing of Indian Languages</p>
+                            <p class="text-gray-300 text-[10px] sm:text-xs telugu mt-2">భారతీయ భాషల పురోగతి మరియు పెంపకం కోసం శక్తివంతమైన న్యాయవాద (AICTE - వాణి)</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-8 sm:h-12 md:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#f9fafb"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-12">
+                <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2 flex items-center justify-center flex-wrap gap-2">Organized By <span class="telugu hidden sm:inline">|</span><span class="telugu sm:hidden">-</span> నిర్వహణ</h2>
+                <div class="w-16 sm:w-20 h-1 bg-accent mx-auto mt-2 sm:mt-4 rounded mb-6 sm:mb-8"></div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-gray-100 max-w-4xl mx-auto text-center w-full sm:w-11/12 lg:w-full transition-transform hover:-translate-y-1 hover:shadow-md duration-300">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-blue-50 text-primary rounded-full flex items-center justify-center text-3xl sm:text-4xl mx-auto mb-4 sm:mb-6">
+                    <i class="fas fa-university"></i>
+                </div>
+                
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-snug">Chaitanya Bharathi Institute of Technology</h3>
+                <p class="text-base sm:text-lg text-primary telugu font-medium mb-4 sm:mb-6">చైతన్య భారతి సాంకేతిక విద్యా సంస్థ</p>
+                
+                <p class="text-gray-600 mb-2 text-base sm:text-lg">Autonomous Institute | Affiliated to Osmania University</p>
+                <p class="text-gray-500 telugu mb-6 sm:mb-8 text-sm sm:text-base">స్వయం ప్రతిపత్తి సంస్థ | ఉస్మానియా విశ్వవిద్యాలయానికి అనుబంధ సంస్థ</p>
+
+                <div class="inline-block bg-gray-100 px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-gray-200">
+                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Department of ECE, Hyderabad - 500 075</p>
+                    <p class="text-xs sm:text-sm text-gray-600 telugu mt-1">ఈసీఈ విభాగం, హైదరాబాద్ -500 075</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="topics" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Call for Papers</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Topics for RCETE 2026</h3>
+                <h4 class="text-lg sm:text-xl text-gray-500 telugu mb-4 sm:mb-6">ఆర్సీఈటీఈ 2026కు సంబంధించిన అంశాలు</h4>
+                <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
+            </div>
+
+            <!-- Responsive Grid for Topics -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+                
+                <div class="group bg-gray-50 rounded-2xl p-6 sm:p-8 hover:bg-primary transition-colors duration-300 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-2xl sm:text-3xl group-hover:bg-white/20 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">Autonomous Navigation and Control Systems</h4>
+                        <p class="text-sm sm:text-base text-gray-600 telugu group-hover:text-blue-100 transition-colors">ఆటోనమస్ నావిగేషన్ మరియు నియంత్రణ వ్యవస్థలు</p>
+                    </div>
+                </div>
+
+                <div class="group bg-gray-50 rounded-2xl p-6 sm:p-8 hover:bg-primary transition-colors duration-300 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-2xl sm:text-3xl group-hover:bg-white/20 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">AI in Healthcare and Biomedical Engineering</h4>
+                        <p class="text-sm sm:text-base text-gray-600 telugu group-hover:text-blue-100 transition-colors">హెల్త్ కేర్ అండ్ బయోమెడికల్ ఇంజనీరింగ్ లో ఏఐ</p>
+                    </div>
+                </div>
+
+                <div class="group bg-gray-50 rounded-2xl p-6 sm:p-8 hover:bg-primary transition-colors duration-300 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-2xl sm:text-3xl group-hover:bg-white/20 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">Sensor Networks and Real-Time Data Analysis</h4>
+                        <p class="text-sm sm:text-base text-gray-600 telugu group-hover:text-blue-100 transition-colors">సెన్సార్ నెట్ వర్క్ లు మరియు రియల్ టైమ్ డేటా విశ్లేషణ</p>
+                    </div>
+                </div>
+
+                <div class="group bg-gray-50 rounded-2xl p-6 sm:p-8 hover:bg-primary transition-colors duration-300 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-2xl sm:text-3xl group-hover:bg-white/20 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">5G/6G and Future Wireless Communication</h4>
+                        <p class="text-sm sm:text-base text-gray-600 telugu group-hover:text-blue-100 transition-colors leading-relaxed">ఐదవ తరం/ ఆరవ తరం మొబైల్ నెట్వర్క్ సాంకేతికత మరియు ఫ్యూచర్ వైర్ లెస్ కమ్యూనికేషన్</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="dates" class="py-16 md:py-24 bg-gray-900 text-white relative overflow-hidden">
+        <!-- Abstract glowing orbs -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-blue-600 opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-accent opacity-20 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-accent uppercase tracking-wider mb-2">Timeline</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Important Dates</h3>
+                <h4 class="text-lg sm:text-xl text-gray-400 telugu mb-4 sm:mb-6">ముఖ్యమైన తేదీలు</h4>
+                <div class="w-16 sm:w-20 h-1 bg-secondary mx-auto rounded"></div>
+            </div>
+
+            <div class="max-w-5xl mx-auto pl-4 sm:pl-0">
+                <!-- Responsive Timeline: Vertical on mobile, Horizontal on MD+ -->
+                <div class="relative border-l-2 sm:border-l-4 border-gray-700 ml-4 sm:ml-0 md:border-l-0 md:border-t-4 md:flex md:justify-around pt-6 md:pt-12">
+                    
+                    <div class="mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
+                        <!-- Icon positioning responsive -->
+                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg">
+                            <i class="fas fa-paper-plane text-gray-400 group-hover:text-white text-sm md:text-base"></i>
+                        </div>
+                        <div class="md:text-center mt-2 px-2">
+                            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Paper Submission Deadline</h4>
+                            <p class="text-gray-400 telugu text-xs sm:text-sm mb-2 sm:mb-3">పేపర్ సమర్పణ గడువు</p>
+                            <p class="text-accent font-bold text-lg sm:text-xl mb-1 sm:mb-2">01 Sept 2026</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">01 సెప్టెంబర్ 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
+                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg">
+                            <i class="fas fa-check-double text-gray-400 group-hover:text-white text-sm md:text-base"></i>
+                        </div>
+                        <div class="md:text-center mt-2 px-2">
+                            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Acceptance Notification</h4>
+                            <p class="text-gray-400 telugu text-xs sm:text-sm mb-2 sm:mb-3">అంగీకార సమాచారం</p>
+                            <p class="text-accent font-bold text-lg sm:text-xl mb-1 sm:mb-2">15 Oct 2026</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">15 అక్టోబర్ 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 md:pl-0 w-full md:w-1/3 group">
+                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-primary border-4 border-blue-400 flex items-center justify-center z-10 shadow-lg shadow-blue-500/50">
+                            <i class="fas fa-calendar-day text-white text-sm md:text-base"></i>
+                        </div>
+                        <div class="md:text-center mt-2 px-2">
+                            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Conference Dates</h4>
+                            <p class="text-gray-400 telugu text-xs sm:text-sm mb-2 sm:mb-3">సదస్సు తేదీలు</p>
+                            <p class="text-accent font-bold text-lg sm:text-xl mb-1 sm:mb-2">14-15 Nov 2026</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">14-15 నవంబర్ 2026</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Program Details</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Conference Schedule</h3>
+                <h4 class="text-lg sm:text-xl text-gray-500 telugu mb-4 sm:mb-6">సదస్సు షెడ్యూల్</h4>
+                <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
+            </div>
+
+            <!-- Responsive Wrapper -->
+            <div class="max-w-4xl mx-auto w-full lg:w-full space-y-8">
+                
+                <!-- Day 1 Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="bg-primary text-white p-4 md:p-6 border-b-4 border-accent flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold">Day 1: November 14, 2026</h4>
+                            <p class="telugu text-blue-200 text-xs sm:text-sm mt-1">మొదటి రోజు: 14 నవంబర్ 2026</p>
+                        </div>
+                        <div class="sm:text-right mt-2 sm:mt-0">
+                            <span class="bg-white/20 px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-white/30 backdrop-blur-sm">Inauguration & Keynotes</span>
+                        </div>
+                    </div>
+
+                    <!-- Responsive Schedule Items (Flex Col on Mobile, Flex Row on Larger) -->
+                    <div class="divide-y divide-gray-100">
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-6 hover:bg-gray-50 transition-colors">
+                            <div class="sm:w-1/3 lg:w-1/4 shrink-0">
+                                <span class="font-bold text-secondary text-base sm:text-lg block">09:00 AM - 10:00 AM</span>
+                            </div>
+                            <div class="sm:w-2/3 lg:w-3/4">
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900">Registration & Welcome Kit Distribution</h5>
+                                <p class="text-gray-500 telugu text-xs sm:text-sm mt-1">నమోదు మరియు స్వాగత కిట్ పంపిణీ</p>
+                            </div>
+                        </div>
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-6 hover:bg-gray-50 transition-colors">
+                            <div class="sm:w-1/3 lg:w-1/4 shrink-0">
+                                <span class="font-bold text-secondary text-base sm:text-lg block">10:00 AM - 11:30 AM</span>
+                            </div>
+                            <div class="sm:w-2/3 lg:w-3/4">
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900">Inaugural Ceremony & Keynote Address 1</h5>
+                                <p class="text-gray-500 telugu text-xs sm:text-sm mt-1">ప్రారంభోత్సవం మరియు ప్రధాన ప్రసంగం 1</p>
+                                <p class="text-gray-600 mt-2 text-xs sm:text-sm flex items-center"><i class="fas fa-map-marker-alt text-accent mr-2 w-4"></i> N Block Seminar Hall, CBIT, Hyderabad</p>
+                            </div>
+                        </div>
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-6 hover:bg-gray-50 transition-colors bg-blue-50/50">
+                            <div class="sm:w-1/3 lg:w-1/4 shrink-0">
+                                <span class="font-bold text-gray-500 text-base sm:text-lg block">11:30 AM - 11:45 AM</span>
+                            </div>
+                            <div class="sm:w-2/3 lg:w-3/4">
+                                <h5 class="text-base sm:text-lg font-medium text-gray-700"><i class="fas fa-coffee text-amber-700 mr-2"></i> High Tea Break</h5>
+                                <p class="text-gray-500 telugu text-xs sm:text-sm mt-1">తేనీటి విరామం</p>
+                            </div>
+                        </div>
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-6 hover:bg-gray-50 transition-colors">
+                            <div class="sm:w-1/3 lg:w-1/4 shrink-0">
+                                <span class="font-bold text-secondary text-base sm:text-lg block">11:45 AM - 01:15 PM</span>
+                            </div>
+                            <div class="sm:w-2/3 lg:w-3/4">
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900">Technical Session 1 (Paper Presentations)</h5>
+                                <p class="text-gray-500 telugu text-xs sm:text-sm mt-1">సాంకేతిక సెషన్ 1 (పేపర్ ప్రెజెంటేషన్లు)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="bg-gray-800 text-white p-4 md:p-6 border-b-4 border-secondary flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-bold">Day 2: November 15, 2026</h4>
+                            <p class="telugu text-gray-300 text-xs sm:text-sm mt-1">రెండవ రోజు: 15 నవంబర్ 2026</p>
+                        </div>
+                        <div class="sm:text-right mt-2 sm:mt-0">
+                            <span class="bg-white/10 px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-white/20 backdrop-blur-sm">Sessions & Valedictory</span>
+                        </div>
+                    </div>
+
+                    <div class="divide-y divide-gray-100">
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-6 hover:bg-gray-50 transition-colors">
+                            <div class="sm:w-1/3 lg:w-1/4 shrink-0">
+                                <span class="font-bold text-secondary text-base sm:text-lg block">09:30 AM - 11:00 AM</span>
+                            </div>
+                            <div class="sm:w-2/3 lg:w-3/4">
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900">Keynote Address 2</h5>
+                                <p class="text-gray-500 telugu text-xs sm:text-sm mt-1">ప్రధాన ప్రసంగం 2</p>
+                            </div>
+                        </div>
+                         <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-2 sm:gap-6 hover:bg-gray-50 transition-colors">
+                            <div class="sm:w-1/3 lg:w-1/4 shrink-0">
+                                <span class="font-bold text-secondary text-base sm:text-lg block">02:00 PM - 04:00 PM</span>
+                            </div>
+                            <div class="sm:w-2/3 lg:w-3/4">
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900">Valedictory Ceremony & Certificate Distribution</h5>
+                                <p class="text-gray-500 telugu text-xs sm:text-sm mt-1">ముగింపు వేడుక మరియు సర్టిఫికెట్ల పంపిణీ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="speakers" class="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Guest & Keynotes</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Eminent Speakers</h3>
+                <h4 class="text-lg sm:text-xl text-gray-500 telugu mb-4 sm:mb-6">ప్రముఖ వక్తలు</h4>
+                <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
+                <p class="text-gray-500 mt-6 max-w-2xl mx-auto text-sm sm:text-base">Distinguished experts from academia and industry will be delivering keynote addresses on emerging engineering trends. (To be announced)</p>
+            </div>
+
+            <!-- Speakers Grid - Responsive 1 col mobile, 2 col tablet, 3 col desktop -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+                
+                <!-- Speaker Placeholder 1 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
+                        <i class="fas fa-user-circle text-6xl text-gray-400 z-10"></i>
+                        <span class="absolute bottom-4 left-4 z-10 bg-primary text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Keynote Speaker 1</span>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">To Be Announced</h4>
+                        <p class="text-gray-500 text-sm mb-3 telugu">ప్రకటించబడవలసి ఉంది</p>
+                        <p class="text-gray-600 text-sm">Eminent Professor / Industry Expert</p>
+                    </div>
+                </div>
+
+                <!-- Speaker Placeholder 2 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
+                        <i class="fas fa-user-circle text-6xl text-gray-400 z-10"></i>
+                        <span class="absolute bottom-4 left-4 z-10 bg-primary text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Keynote Speaker 2</span>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">To Be Announced</h4>
+                        <p class="text-gray-500 text-sm mb-3 telugu">ప్రకటించబడవలసి ఉంది</p>
+                        <p class="text-gray-600 text-sm">Eminent Professor / Industry Expert</p>
+                    </div>
+                </div>
+
+                <!-- Speaker Placeholder 3 -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300 sm:col-span-2 lg:col-span-1 sm:max-w-md sm:mx-auto w-full">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
+                        <i class="fas fa-user-circle text-6xl text-gray-400 z-10"></i>
+                        <span class="absolute bottom-4 left-4 z-10 bg-secondary text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Guest of Honor</span>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">To Be Announced</h4>
+                        <p class="text-gray-500 text-sm mb-3 telugu">ప్రకటించబడవలసి ఉంది</p>
+                        <p class="text-gray-600 text-sm">Special Invitee</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="committee" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Leadership</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Organizing Committee</h3>
+                <h4 class="text-lg sm:text-xl text-gray-500 telugu mb-4 sm:mb-6">నిర్వహణ కమిటీ</h4>
+                <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden w-full lg:w-full">
+                <ul class="divide-y divide-gray-100">
+                    
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 text-secondary rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-0.5">Chief Patron</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">ప్రధాన పోషకులు</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Sri. N. Subash</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-0.5">President, CBIT</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">శ్రీ. ఎన్.సుభాష్. ప్రెసిడెంట్, సీబీఐటీ.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-blue-500 uppercase tracking-wider mb-0.5">Patron</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">పోషకులు</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Prof. C. V. Narasimhulu</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-0.5">Principal, CBIT</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">ప్రొఫెసర్. సి.వి.నరసింహులు. ప్రిన్సిపాల్, సీబీఐటీ.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-0.5">Advisor</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సలహాదారు</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Prof. A. D. Sarma</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-0.5">Advisor-R&D, CBIT</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య ఎ.డి.శర్మ, సలహాదారు-ఆర్ అండ్ డీ, సీబీఐటీ.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-0.5">Advisor</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సలహాదారు</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Prof. N.V. Koteswara Rao</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-0.5">Director-IQAC, CBIT</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య ఎన్.వి.కోటేశ్వరరావు, సంచాలకుడు-ఐక్యూఏసీ, సీబీఐటీ.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-0.5">Advisor</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సలహాదారు</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Prof. D. Krishna Reddy</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-0.5">Director-R&D, CBIT</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య డి.కృష్ణారెడ్డి, సంచాలకుడు-ఆర్ అండ్ డీ, సీబీఐటీ.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-0.5">Advisor</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సలహాదారు</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Dr. K. Vasanth</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-0.5">HoD-ECE, CBIT</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">డా. కె.వసంత్, ఈసీఈ శాఖ అధిపతి, సీబీఐటీ.</p>
+                        </div>
+                    </li>
+
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-amber-50 text-accent rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-accent uppercase tracking-wider mb-0.5">Coordinator</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సమన్వయకర్త</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Dr. T. Sridher</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mt-1 mb-0.5">Asst. Professor, ECE</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">డా. టి.శ్రీధర్, అధ్యాపకుడు, ఈసీఈ.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-xl shrink-0">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-green-500 uppercase tracking-wider mb-0.5">Co-Coordinator</p>
+                                <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సహ సమన్వయకర్త</p>
+                            </div>
+                        </div>
+                        <div class="pl-14 sm:pl-0 sm:text-right">
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Dr. D. Nagadevi</h4>
+                            <p class="text-gray-600 text-xs sm:text-sm mt-1 mb-0.5">Asst. Professor, ECE</p>
+                            <p class="text-gray-500 telugu text-xs sm:text-sm">డా. డి.నాగదేవి, అధ్యాపకురాలు, ఈసీఈ.</p>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-white pt-12 sm:pt-16 pb-6 sm:pb-8 border-t-4 border-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 mb-8 sm:mb-12 border-b border-blue-800 pb-8 sm:pb-12 text-center lg:text-left">
+                
+                <div class="w-full lg:w-1/2">
+                    <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg flex items-center justify-center text-primary font-bold text-lg sm:text-xl">
+                            CBIT
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-xl sm:text-2xl">RCETE <span class="text-accent">2026</span></h2>
+                            <p class="text-[10px] sm:text-xs text-blue-300 telugu">ఆర్సీఈటీఈ 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-blue-200 text-xs sm:text-sm max-w-md mx-auto lg:mx-0 leading-relaxed">
+                        Regional Conference in Emerging Trends in Engineering.<br/>
+                        <span class="telugu text-[10px] sm:text-xs mt-1 block">అభియంత్రిక శాస్త్రం లో ఉద్భవిస్తున్న ధోరణులు పై ప్రాంతీయ సదస్సు</span>
+                    </p>
+                </div>
+
+                <div class="w-full lg:w-1/2 lg:text-right flex flex-col items-center lg:items-end">
+                    <p class="text-white font-semibold mb-1 text-sm sm:text-base">Department of ECE, Hyderabad - 500 075</p>
+                    <p class="text-blue-300 text-xs sm:text-sm telugu mb-4 sm:mb-6">ఈసీఈ విభాగం, హైదరాబాద్ -500 075</p>
+                    
+                    <a href="https://www.cbit.ac.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent hover:text-white transition-colors text-xs sm:text-sm font-medium border border-accent/50 hover:border-white px-5 py-2.5 rounded-full shadow-sm hover:shadow-md">
+                        Visit Institute Website <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="text-xs sm:text-sm text-blue-300">
+                    &copy; 2026 Dept. of ECE, Chaitanya Bharathi Institute of Technology. All Rights Reserved.
+                </p>
+                <p class="text-xs sm:text-sm text-blue-300 flex items-center telugu">
+                    చైతన్య భారతి సాంకేతిక విద్యా సంస్థ
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Add sticky navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('shadow-md');
+            } else {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
