@@ -58,11 +58,11 @@
 
     <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-20 lg:h-28">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-2 sm:gap-4">
-                    <img src="CBIT-LOGO.png" alt="CBIT Logo" class="h-10 sm:h-12 md:h-14 w-auto object-contain rounded"
-                        onerror="this.outerHTML='<div class=\'h-10 sm:h-12 md:h-14 px-3 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg\'>CBIT</div>'">
+                    <img src="CBIT-LOGO.png" alt="CBIT Logo" class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain rounded"
+                        onerror="this.outerHTML='<div class=\'h-10 sm:h-12 md:h-14 lg:h-16 px-3 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg\'>CBIT</div>'">
                     <div class="border-l-2 border-gray-200 pl-2 sm:pl-3">
                         <h1 class="font-bold text-lg sm:text-xl text-primary leading-tight">RCETE <span
                                 class="text-accent">2026</span></h1>
@@ -71,61 +71,50 @@
                 </div>
 
                 <!-- Desktop Menu (Hidden on smaller screens) -->
-                <div class="hidden lg:flex items-center space-x-4 xl:space-x-6">
-                    <a href="#home"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Home</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">హోమ్</div>
+                <div class="hidden lg:flex items-center space-x-3 xl:space-x-6 ml-auto">
+                    <a href="#home" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Home</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">హోమ్</div>
                     </a>
-                    <a href="#about"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>About</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">గురించి</div>
+                    <a href="#about" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">About</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">గురించి</div>
                     </a>
-                    <a href="#objectives"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Objectives</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">లక్ష్యాలు</div>
+                    <a href="#objectives" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Objectives</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">లక్ష్యాలు</div>
                     </a>
-                    <a href="#outcomes"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Outcomes</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">ఫలితాలు</div>
+                    <a href="#outcomes" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Outcomes</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">ఫలితాలు</div>
                     </a>
-                    <a href="#topics"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Topics</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">అంశాలు</div>
+                    <a href="#topics" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Topics</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">అంశాలు</div>
                     </a>
-                    <a href="#dates"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Dates</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">తేదీలు</div>
+                    <a href="#dates" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Dates</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">తేదీలు</div>
                     </a>
-                    <a href="#schedule"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Schedule</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">షెడ్యూల్</div>
+                    <a href="#schedule" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Schedule</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">షెడ్యూల్</div>
                     </a>
-                    <a href="#speakers"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Speakers</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">వక్తలు</div>
+                    <a href="#speakers" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Speakers</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">వక్తలు</div>
                     </a>
-                    <a href="#committee"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Committee</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">కమిటీ</div>
+                    <a href="#committee" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Committee</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">కమిటీ</div>
                     </a>
-                    <a href="#contact"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>Contact</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">సంప్రదించండి</div>
+                    <a href="#contact" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">Contact</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">సంప్రదించండి</div>
                     </a>
-                    <a href="#faq"
-                        class="group text-gray-600 hover:text-primary font-medium transition-colors text-sm text-center">
-                        <div>FAQ</div>
-                        <div class="telugu text-[10px] text-gray-400 group-hover:text-secondary">ప్రశ్నలు</div>
+                    <a href="#faq" class="group text-gray-600 hover:text-primary transition-colors text-center">
+                        <div class="text-sm xl:text-base font-semibold">FAQ</div>
+                        <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">ప్రశ్నలు</div>
                     </a>
                 </div>
 
@@ -141,7 +130,7 @@
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu"
-            class="hidden lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 top-20 transition-all origin-top">
+            class="hidden lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 top-20 transition-all origin-top max-h-[calc(100vh-5rem)] overflow-y-auto">
             <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
                 <a href="#home"
                     class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary flex items-center justify-between">Home
@@ -295,12 +284,12 @@
 
                 <a href="https://maps.app.goo.gl/1hfmGbPP2trB1brX6" target="_blank" rel="noopener noreferrer"
                     class="inline-block bg-gray-100 hover:bg-blue-50 px-6 py-3 rounded-lg border border-gray-200 transition-colors group">
-                    <p class="font-semibold text-gray-800 text-sm sm:text-base group-hover:text-primary">
-                        <i class="fas fa-map-marker-alt text-accent mr-2"></i> N Block Seminar Hall, Department of ECE,
+                    <p class="font-semibold text-gray-800 text-sm sm:text-base group-hover:text-primary transition-colors">
+                        <i class="fas fa-map-marker-alt text-accent group-hover:text-red-500 transition-colors mr-2"></i> N Block Seminar Hall, Department of ECE,
                         Hyderabad - 500 075
                     </p>
                     <p class="text-xs sm:text-sm text-gray-600 telugu mt-1">ఎన్ బ్లాక్ సెమినార్ హాల్, ఈసీఈ విభాగం,
-                        హైదరాబాద్ - 500 075 <i class="fas fa-external-link-alt text-[10px] ml-1 text-secondary"></i></p>
+                        హైదరాబాద్ - 500 075 <i class="fas fa-external-link-alt text-[10px] ml-1 text-secondary opacity-0 group-hover:opacity-100 transition-opacity"></i></p>
                 </a>
             </div>
         </div>
@@ -1145,7 +1134,7 @@
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
                             <h4 class="font-bold text-gray-900">Can I present my research paper in Telugu?</h4>
-                            <p class="text-xs sm:text-sm text-gray-500 telugu mt-1ག నేను నా పరిశోధనా పత్రాన్ని తెలుగులో ప్రెజెంట్ చేయవచ్చా?</p>
+                            <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">నేను నా పరిశోధనా పత్రాన్ని తెలుగులో ప్రెజెంట్ చేయవచ్చా?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
@@ -1186,12 +1175,12 @@
                 class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 mb-8 sm:mb-12 border-b border-blue-800 pb-8 sm:pb-12 text-center lg:text-left">
 
                 <div class="w-full lg:w-1/2">
-                    <div class="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                    <div class="flex flex-col items-center lg:items-start gap-4 mb-4">
                         <img src="CBIT-LOGO.png" alt="CBIT Logo"
-                            class="h-12 sm:h-14 md:h-16 w-auto object-contain bg-white rounded-lg p-1.5 shadow-md"
-                            onerror="this.outerHTML='<div class=\'h-12 sm:h-14 md:h-16 px-3 bg-white rounded-lg flex items-center justify-center text-primary font-bold text-sm shadow-md\'>CBIT</div>'">
+                            class="h-16 sm:h-20 md:h-24 w-auto object-contain bg-white rounded-lg p-2 shadow-md"
+                            onerror="this.outerHTML='<div class=\'h-16 sm:h-20 md:h-24 px-4 bg-white rounded-lg flex items-center justify-center text-primary font-bold text-lg sm:text-xl shadow-md\'>CBIT</div>'">
                         <div>
-                            <h2 class="font-bold text-xl sm:text-2xl">RCETE <span class="text-accent">2026</span>
+                            <h2 class="font-bold text-xl sm:text-2xl mt-2">RCETE <span class="text-accent">2026</span>
                             </h2>
                             <p class="text-[10px] sm:text-xs text-blue-300 telugu">ఆర్సీఈటీఈ 2026</p>
                         </div>
@@ -1203,7 +1192,7 @@
                     </p>
                 </div>
 
-                <div class="w-full lg:w-1/2 lg:text-right flex flex-col items-center lg:items-end">
+                <div class="w-full lg:w-1/2 lg:text-right flex flex-col items-center lg:items-end mt-4 lg:mt-0">
                     <p class="text-white font-semibold mb-1 text-sm sm:text-base">Department of ECE, Hyderabad - 500
                         075</p>
                     <p class="text-blue-300 text-xs sm:text-sm telugu mb-4 sm:mb-6">ఈసీఈ విభాగం, హైదరాబాద్ -500 075
