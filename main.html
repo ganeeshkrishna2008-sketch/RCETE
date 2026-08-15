@@ -307,12 +307,9 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
-                    <a href="#register" class="w-full sm:w-auto px-8 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-lg hover:-translate-y-1">
-                        Submit Paper (Free)
-                    </a>
-                    <a href="#topics" class="w-full sm:w-auto px-8 py-3.5 text-base sm:text-lg font-bold rounded-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary transition-all shadow-lg hover:-translate-y-1">
-                        Call for Papers
+                <div class="flex justify-center items-center mt-6">
+                    <a href="#register" class="w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-lg hover:-translate-y-1">
+                        Registration
                     </a>
                 </div>
             </div>
@@ -565,8 +562,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">Paper Formatting & Registration</h2>
-                <h3 class="text-lg text-gray-500 telugu mb-4 border-b-2 border-accent inline-block pb-1">నిబంధనలు మరియు రిజిస్ట్రేషన్ విధానం</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">Registration</h2>
+                <h3 class="text-lg text-gray-500 telugu mb-4 border-b-2 border-accent inline-block pb-1">రిజిస్ట్రేషన్ విధానం</h3>
                 <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <div class="inline-block bg-green-100 text-green-700 px-6 py-2.5 rounded-full text-base font-bold border border-green-300 shadow-sm">
                         <i class="fas fa-gift mr-2"></i> Zero Registration Fee (పూర్తిగా ఉచితం - ₹0)
@@ -1024,7 +1021,7 @@
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
+                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
                         <p class="text-gray-700 font-medium"><span class="text-secondary"><i class="fas fa-check-circle mr-2"></i>Zero Registration Fee.</span> The conference is fully sponsored by AICTE VAANI 3.0.</p>
                         <p class="text-sm text-gray-600 telugu mt-2">శూన్య నమోదుపత్ర రుసుము. ఈ సదస్సు పూర్తిగా AICTE VAANI ద్వారా స్పాన్సర్ చేయబడింది.</p>
                     </div>
@@ -1194,6 +1191,10 @@
                             icon.classList.remove('fa-times');
                             icon.classList.add('fa-bars');
                         }
+                        
+                        // Added logic: ensure sub-menus reset if closed via clicking a link
+                        document.querySelectorAll('.mobile-nav-menu').forEach(m => m.classList.add('hidden'));
+                        document.querySelectorAll('.mobile-nav-icon').forEach(i => i.classList.remove('rotate-180'));
                     });
                 });
             }
