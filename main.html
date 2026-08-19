@@ -259,11 +259,11 @@
         </div>
     </nav>
 
-    <section id="home" class="hero-bg min-h-screen flex items-center relative pt-20 pb-16">
+    <section id="home" class="hero-bg min-h-screen flex items-center relative pt-24 md:pt-28 pb-32 md:pb-40">
         <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-blue-900/85 md:from-primary/90 md:to-blue-900/80"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="text-center max-w-5xl mx-auto mt-8 sm:mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+            <div class="text-center max-w-5xl mx-auto mt-4 sm:mt-8">
 
                 <!-- Venue & Dates Badge -->
                 <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-6">
@@ -307,16 +307,18 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center items-center mt-6">
-                    <a href="#register" class="w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-lg hover:-translate-y-1">
-                        Registration
+                <!-- Registration Hero CTA Button (Positioned safely above bottom wave) -->
+                <div class="flex justify-center items-center mt-6 mb-2">
+                    <a href="#register" class="w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-xl hover:-translate-y-1 flex flex-col items-center justify-center gap-0.5 border border-yellow-300/40">
+                        <span>Registration</span>
+                        <span class="telugu text-xs font-normal text-primary/80">నమోదు</span>
                     </a>
                 </div>
             </div>
         </div>
         
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
-            <svg class="relative block w-full h-8 sm:h-12 md:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+            <svg class="relative block w-full h-12 sm:h-16 md:h-24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#f9fafb"></path>
             </svg>
         </div>
@@ -476,7 +478,7 @@
                     <p class="text-gray-600 text-sm telugu">సెన్సార్ నెట్ వర్క్ లు మరియు రియల్ టైమ్ డేటా విశ్లేషణ</p>
                 </div>
 
-                <!-- Track 4 (Restored) -->
+                <!-- Track 4 -->
                 <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-microchip"></i>
@@ -485,7 +487,7 @@
                     <p class="text-gray-600 text-sm telugu">VLSI మరియు Embedded Systemsలో ప్రస్తుత పరిశోధనా అంశాలు</p>
                 </div>
 
-                <!-- Track 5 (Restored) -->
+                <!-- Track 5 -->
                 <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group md:col-span-2 lg:col-span-1">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-lightbulb"></i>
@@ -1043,7 +1045,7 @@
                     </div>
                 </div>
 
-                <!-- FAQ 3 (Restored) -->
+                <!-- FAQ 3 -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1059,7 +1061,7 @@
                     </div>
                 </div>
 
-                <!-- FAQ 4 (Restored) -->
+                <!-- FAQ 4 -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1075,7 +1077,7 @@
                     </div>
                 </div>
                 
-                <!-- FAQ 5 (Restored) -->
+                <!-- FAQ 5 -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1192,7 +1194,7 @@
                             icon.classList.add('fa-bars');
                         }
                         
-                        // Added logic: ensure sub-menus reset if closed via clicking a link
+                        // Reset sub-menus when closed via clicking a link
                         document.querySelectorAll('.mobile-nav-menu').forEach(m => m.classList.add('hidden'));
                         document.querySelectorAll('.mobile-nav-icon').forEach(i => i.classList.remove('rotate-180'));
                     });
