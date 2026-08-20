@@ -57,6 +57,15 @@
             transform: translateY(0);
         }
 
+        /* Horizontal Scrollbar Hiding */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
         /* Interactive Animations */
         .reveal {
             opacity: 0;
@@ -529,7 +538,7 @@
                     <p class="text-gray-600 text-sm telugu">సెన్సార్ నెట్ వర్క్ లు మరియు రియల్ టైమ్ డేటా విశ్లేషణ</p>
                 </div>
 
-                <!-- Track 4 (Restored) -->
+                <!-- Track 4 -->
                 <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-microchip"></i>
@@ -538,7 +547,7 @@
                     <p class="text-gray-600 text-sm telugu">VLSI మరియు Embedded Systemsలో ప్రస్తుత పరిశోధనా అంశాలు</p>
                 </div>
 
-                <!-- Track 5 (Restored) -->
+                <!-- Track 5 -->
                 <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group md:col-span-2 lg:col-span-1">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-lightbulb"></i>
@@ -913,7 +922,6 @@
         </div>
     </section>
 
-    <!-- Past Edition Section (Proceedings & Gallery) -->
     <section id="past-edition" class="py-16 md:py-24 bg-gray-50 border-t border-gray-100 reveal">
         <span id="proceedings" class="block -mt-24 pt-24"></span>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -927,68 +935,97 @@
             <!-- Proceedings Spotlight Card -->
             <div class="max-w-4xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-16 shadow-sm hover:shadow-md transition-shadow">
                 <div class="w-32 h-44 sm:w-40 sm:h-52 bg-white shadow-md border border-gray-200 rounded-lg flex flex-col items-center justify-center shrink-0 relative overflow-hidden group">
-                    <!-- Placeholder cover styling representing the journal -->
                     <div class="absolute inset-0 bg-gradient-to-br from-primary to-blue-800 opacity-10"></div>
                     <i class="fas fa-book-open text-4xl sm:text-5xl text-primary group-hover:scale-110 transition-transform mb-2"></i>
                     <span class="font-bold text-primary text-xs sm:text-sm">JCSE</span>
                     <div class="absolute bottom-0 left-0 w-full bg-primary/90 text-white text-[10px] text-center py-1.5 font-medium">Vol 3, No 11</div>
                 </div>
-                <div class="text-center sm:text-left">
+                <div class="text-center sm:text-left w-full">
                     <div class="inline-flex items-center gap-2 bg-white border border-gray-200 px-3 py-1 rounded-full text-xs font-semibold text-gray-600 mb-3 shadow-sm">
                         <i class="fas fa-barcode text-secondary"></i> ISSN: 2583-9055
                     </div>
                     <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">RCETE 2025 Proceedings</h4>
-                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-3">The inaugural edition of RCETE was a grand success. All selected papers were successfully published in <span class="font-semibold text-primary">The Journal of Computational Science and Engineering (JCSE)</span>.</p>
+                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-3">The inaugural edition of RCETE was a grand success. All selected papers were successfully published in <span class="font-bold text-primary">The Journal of Computational Science and Engineering (JCSE)</span>.</p>
                     
-                    <div class="bg-white/60 p-4 rounded-lg border border-blue-100/50 mb-5 inline-block text-left shadow-sm">
-                        <p class="text-sm text-gray-800 font-semibold mb-1"><i class="fas fa-info-circle text-secondary mr-1"></i> How to view published papers:</p>
-                        <p class="text-sm text-gray-600">Please go to <strong>Volume 3, Issue 11, November 2025</strong> on the JCSE archives page so that you can see all the last year submitted papers.</p>
+                    <p class="text-gray-600 telugu text-sm mb-5">మొదటి ప్రాంతీయ సదస్సు ప్రొసీడింగ్స్ విజయవంతంగా ప్రచురించబడ్డాయి.</p>
+                    
+                    <div class="bg-white/80 p-4 rounded-lg border border-blue-200 mb-5 text-left shadow-sm">
+                        <p class="text-sm text-gray-800 font-bold mb-1.5"><i class="fas fa-search text-secondary mr-1"></i> How to view published papers:</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Click the archives button below, then go to <strong class="text-primary">Volume 3, Issue 11, November 2025</strong> to see all the papers submitted last year.</p>
                     </div>
 
-                    <p class="text-gray-600 telugu text-sm mb-6">మొదటి ప్రాంతీయ సదస్సు ప్రొసీడింగ్స్ విజయవంతంగా ప్రచురించబడ్డాయి.</p>
-                    
-                    <div class="flex flex-col items-center sm:items-start gap-5 w-full">
-                        <!-- JCSE Archives Link -->
-                        <a href="https://jcse.cloud/JCSE/current.php" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-blue-800 text-white px-6 py-2.5 rounded-lg font-semibold transition-all shadow-sm text-sm sm:text-base group hover:-translate-y-0.5">
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <a href="https://jcse.cloud/JCSE/current.php" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-blue-800 text-white px-6 py-2.5 rounded-lg font-semibold transition-all shadow-sm text-sm sm:text-base group hover:-translate-y-0.5">
                             <i class="fas fa-external-link-alt text-lg"></i> View JCSE Archives
                         </a>
-                        
-                        <!-- PDF Download Instruction & Button -->
-                        <div class="text-center sm:text-left mt-2">
-                            <p class="text-sm text-gray-700 font-medium mb-3">
-                                To download the complete last year's proceedings document, click on the button below:
-                            </p>
-                            <!-- Direct PDF Download Button (Replace href with your Google Drive Link) -->
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-semibold transition-all shadow-sm text-sm sm:text-base group hover:-translate-y-0.5">
-                                <i class="fas fa-file-pdf text-lg"></i> Download PDF
-                            </a>
-                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-5 border-t border-blue-200 text-center sm:text-left">
+                        <p class="text-sm text-gray-700 font-medium mb-3">To download the complete last year's proceedings document, click on the button below:</p>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-semibold transition-all shadow-sm text-sm sm:text-base group hover:-translate-y-0.5">
+                            <i class="fas fa-file-pdf text-lg"></i> Download PDF
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Photo Gallery Grid -->
+            <!-- Horizontal Scroll Photo Gallery Grid -->
             <span id="gallery" class="block -mt-24 pt-24"></span>
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-[1536px] mx-auto w-full overflow-hidden">
                 <h4 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Moments from RCETE 2025 <span class="telugu font-normal text-base text-gray-500 block mt-1">గత సదస్సు చిత్రమాలిక</span></h4>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Gallery Image 1 -->
-                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Conference Audience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                <div id="gallery-container" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 pt-2 px-2 sm:px-4 hide-scrollbar w-full scroll-smooth">
+                    <!-- Photo 1 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-1.jpg" alt="RCETE 2025 Conference Audience" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+1'">
                     </div>
-                    <!-- Gallery Image 2 -->
-                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
-                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Keynote Speaker" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    <!-- Photo 2 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-2.jpg" alt="RCETE 2025 Keynote Speaker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+2'">
                     </div>
-                    <!-- Gallery Image 3 -->
-                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
-                        <img src="https://images.unsplash.com/photo-1558403194-611308249627?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Panel Discussion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    <!-- Photo 3 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-3.jpg" alt="RCETE 2025 Panel Discussion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+3'">
                     </div>
-                    <!-- Gallery Image 4 -->
-                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
-                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Networking" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    <!-- Photo 4 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-4.jpg" alt="RCETE 2025 Networking Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+4'">
                     </div>
+                    <!-- Photo 5 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-5.jpg" alt="RCETE 2025 Paper Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+5'">
+                    </div>
+                    <!-- Photo 6 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-6.jpg" alt="RCETE 2025 Audience Listening" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+6'">
+                    </div>
+                    <!-- Photo 7 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-7.jpg" alt="RCETE 2025 Technical Discussion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+7'">
+                    </div>
+                    <!-- Photo 8 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-8.jpg" alt="RCETE 2025 Event Hall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+8'">
+                    </div>
+                    <!-- Photo 9 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-9.jpg" alt="RCETE 2025 Award Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+9'">
+                    </div>
+                    <!-- Photo 10 -->
+                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-10.jpg" alt="RCETE 2025 Organizing Team Photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+10'">
+                    </div>
+                </div>
+                
+                <!-- Gallery Navigation Buttons -->
+                <div class="flex justify-center items-center gap-4 sm:gap-6 mt-2">
+                    <button id="scroll-left" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all focus:outline-none hover:-translate-x-1">
+                        <i class="fas fa-chevron-left text-sm sm:text-base"></i>
+                    </button>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-widest font-semibold text-gray-400">Explore Gallery</span>
+                    <button id="scroll-right" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all focus:outline-none hover:translate-x-1">
+                        <i class="fas fa-chevron-right text-sm sm:text-base"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1145,7 +1182,6 @@
             </div>
 
             <div class="max-w-4xl mx-auto space-y-4">
-                <!-- FAQ 1 -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1161,7 +1197,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 2 -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1177,7 +1212,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 3 (Restored) -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1193,7 +1227,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ 4 (Restored) -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1209,7 +1242,6 @@
                     </div>
                 </div>
                 
-                <!-- FAQ 5 (Restored) -->
                 <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
@@ -1228,7 +1260,6 @@
                         <p class="text-sm text-gray-600 telugu mt-3">మీరు సమన్వయకర్తలను సంప్రదించవచ్చు: డా|| టి.శ్రీధర్ (8801206497), డా|| డి.నాగదేవి (9704111749).</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -1344,6 +1375,24 @@
                         navbar.classList.remove('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
                         navbar.classList.add('shadow-md');
                     }
+                });
+            }
+
+            // Gallery Horizontal Scroll Logic
+            const gallery = document.getElementById('gallery-container');
+            const scrollLeftBtn = document.getElementById('scroll-left');
+            const scrollRightBtn = document.getElementById('scroll-right');
+
+            if (gallery && scrollLeftBtn && scrollRightBtn) {
+                // Approximate width of one image card + gap
+                const scrollAmount = 320; 
+
+                scrollLeftBtn.addEventListener('click', () => {
+                    gallery.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+
+                scrollRightBtn.addEventListener('click', () => {
+                    gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 });
             }
 
