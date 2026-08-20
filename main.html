@@ -171,6 +171,26 @@
                         </div>
                     </div>
 
+                    <!-- Past Edition Dropdown -->
+                    <div class="relative group px-2 py-4 cursor-pointer">
+                        <div class="text-center group-hover:text-primary transition-colors text-gray-600">
+                            <div class="text-sm xl:text-base font-semibold flex items-center justify-center gap-1">Past Edition <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i></div>
+                            <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">గత సదస్సు</div>
+                        </div>
+                        <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible transform -translate-y-2 z-50">
+                            <div class="py-2">
+                                <a href="#proceedings" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
+                                    <div class="text-sm font-semibold">2025 Proceedings</div>
+                                    <div class="telugu text-[10px] text-gray-500 mt-0.5">2025 ప్రొసీడింగ్స్</div>
+                                </a>
+                                <a href="#gallery" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
+                                    <div class="text-sm font-semibold">Photo Gallery</div>
+                                    <div class="telugu text-[10px] text-gray-500 mt-0.5">చిత్రమాలిక</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Organization Dropdown -->
                     <div class="relative group px-2 py-4 cursor-pointer">
                         <div class="text-center group-hover:text-primary transition-colors text-gray-600">
@@ -253,6 +273,18 @@
                     <div id="mob-program" class="hidden mobile-nav-menu bg-gray-50 px-4 py-2 space-y-2 rounded-b-lg">
                         <a href="#schedule" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Conference Schedule <span class="telugu text-[10px] text-gray-400 block">షెడ్యూల్</span></a>
                         <a href="#speakers" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Keynote Speakers <span class="telugu text-[10px] text-gray-400 block">ప్రముఖ వక్తలు</span></a>
+                    </div>
+                </div>
+
+                <!-- Past Edition Accordion -->
+                <div>
+                    <button onclick="window.toggleMobileNav('mob-past', 'icon-past')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
+                        <div class="flex items-center gap-2">Past Edition <span class="text-xs text-gray-400 telugu font-normal">గత సదస్సు</span></div>
+                        <i id="icon-past" class="fas fa-chevron-down text-gray-400 text-sm mobile-nav-icon transition-transform duration-300"></i>
+                    </button>
+                    <div id="mob-past" class="hidden mobile-nav-menu bg-gray-50 px-4 py-2 space-y-2 rounded-b-lg">
+                        <a href="#proceedings" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">2025 Proceedings <span class="telugu text-[10px] text-gray-400 block">2025 ప్రొసీడింగ్స్</span></a>
+                        <a href="#gallery" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Photo Gallery <span class="telugu text-[10px] text-gray-400 block">చిత్రమాలిక</span></a>
                     </div>
                 </div>
 
@@ -881,7 +913,63 @@
         </div>
     </section>
 
-    <section id="committee" class="py-16 md:py-24 bg-gray-50 reveal">
+    <!-- Past Edition Section (Proceedings & Gallery) -->
+    <section id="past-edition" class="py-16 md:py-24 bg-gray-50 border-t border-gray-100 reveal">
+        <span id="proceedings" class="block -mt-24 pt-24"></span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Previous Edition</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">RCETE 2025 Highlights</h3>
+                <h4 class="text-lg sm:text-xl text-gray-500 telugu mb-4 sm:mb-6">గత సదస్సు (2025) విశేషాలు</h4>
+                <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
+            </div>
+
+            <!-- Proceedings Spotlight Card -->
+            <div class="max-w-4xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-16 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-32 h-44 sm:w-40 sm:h-52 bg-white shadow-md border border-gray-200 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden group">
+                    <!-- Placeholder cover. Replace src with actual cover image later -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary to-blue-800 opacity-10"></div>
+                    <i class="fas fa-book text-5xl text-primary group-hover:scale-110 transition-transform"></i>
+                    <div class="absolute bottom-0 left-0 w-full bg-primary/90 text-white text-[10px] text-center py-1">ISBN: TBD</div>
+                </div>
+                <div class="text-center sm:text-left">
+                    <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">RCETE 2025 Proceedings</h4>
+                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-3">The inaugural edition of RCETE was a grand success, bringing together top minds in emerging engineering trends. All selected papers were successfully published.</p>
+                    <p class="text-gray-600 telugu text-sm mb-5">మొదటి ప్రాంతీయ సదస్సు ప్రొసీడింగ్స్ విజయవంతంగా ప్రచురించబడ్డాయి.</p>
+                    <a href="#" class="inline-flex items-center gap-2 bg-primary hover:bg-blue-800 text-white px-6 py-2.5 rounded-lg font-semibold transition-colors shadow-sm text-sm sm:text-base">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Photo Gallery Grid -->
+            <span id="gallery" class="block -mt-24 pt-24"></span>
+            <div class="max-w-5xl mx-auto">
+                <h4 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Moments from RCETE 2025 <span class="telugu font-normal text-base text-gray-500 block mt-1">గత సదస్సు చిత్రమాలిక</span></h4>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Gallery Image 1 -->
+                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Conference Audience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    </div>
+                    <!-- Gallery Image 2 -->
+                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
+                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Keynote Speaker" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    </div>
+                    <!-- Gallery Image 3 -->
+                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
+                        <img src="https://images.unsplash.com/photo-1558403194-611308249627?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Panel Discussion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    </div>
+                    <!-- Gallery Image 4 -->
+                    <div class="overflow-hidden rounded-xl h-40 sm:h-48 shadow-sm group border border-gray-100 bg-white">
+                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Networking" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-gray-400\'><i class=\'fas fa-image text-3xl\'></i></div>'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="committee" class="py-16 md:py-24 bg-white border-t border-gray-100 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Leadership</h2>
