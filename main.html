@@ -38,19 +38,11 @@
         body { font-family: 'Inter', sans-serif; }
         .telugu { font-family: 'Noto Sans Telugu', sans-serif; }
 
-        .hero-bg {
-            background-image: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.95)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
         /* Dropdown transition utilities */
         .dropdown-menu {
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: top;
         }
-        
         .group:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
@@ -58,38 +50,98 @@
         }
 
         /* Horizontal Scrollbar Hiding */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Interactive Animations */
+        /* General Reveal Animations */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Staggered Grid Reveal Items */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Floating Animation */
         .float-anim {
-            animation: float 4s ease-in-out infinite;
+            animation: float 5s ease-in-out infinite;
         }
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
         }
+
+        /* Hybrid Mask Text Reveal */
+        .text-reveal-wrapper {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        .text-reveal-inner {
+            display: block;
+            transform: translateY(110%);
+            opacity: 0;
+        }
+        .text-reveal-inner.active {
+            animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Animation Delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        /* Nav Indicator Line */
+        .nav-indicator {
+            transform: scaleX(0);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+            transform-origin: center;
+        }
+        .nav-active .nav-indicator, .group:hover .nav-indicator {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+        /* Glassmorphism Tilt Card Effect */
+        .glass-card {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            transform-style: preserve-3d;
+        }
+        .glass-card:hover {
+            box-shadow: 0 15px 35px -5px rgba(30, 58, 138, 0.15), 0 8px 10px -5px rgba(30, 58, 138, 0.1);
+        }
+
     </style>
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-secondary selection:text-white">
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-secondary selection:text-white relative">
 
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md" id="navbar">
+    <!-- Reading Progress Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent to-yellow-300 z-[100] w-0 transition-all duration-150 ease-out shadow-[0_0_10px_rgba(245,158,11,0.7)]"></div>
+
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md" id="navbar">
         <div class="max-w-[1536px] mx-auto px-2 lg:px-4 xl:px-6">
             <div class="flex justify-between items-center h-20 lg:h-24">
                 
@@ -103,21 +155,21 @@
                     </div>
                 </a>
 
-                <!-- Desktop Menu (Grouped Hierarchy) -->
+                <!-- Desktop Menu (Grouped Hierarchy & Scroll Spy) -->
                 <div class="hidden lg:flex items-center space-x-3 xl:space-x-6 ml-auto">
                     
-                    <!-- Home -->
-                    <a href="#home" class="group text-gray-600 hover:text-primary transition-colors text-center px-2 py-4">
+                    <a href="#home" class="nav-desktop-link group text-gray-600 hover:text-primary transition-colors text-center px-2 py-4 relative" data-nav-target="home">
                         <div class="text-sm xl:text-base font-semibold">Home</div>
                         <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">హోమ్</div>
+                        <div class="nav-indicator h-0.5 w-full bg-accent absolute bottom-0 left-0 rounded-t-md"></div>
                     </a>
 
-                    <!-- About Dropdown -->
-                    <div class="relative group px-2 py-4 cursor-pointer">
+                    <div class="nav-desktop-link relative group px-2 py-4 cursor-pointer" data-nav-target="about">
                         <div class="text-center group-hover:text-primary transition-colors text-gray-600">
                             <div class="text-sm xl:text-base font-semibold flex items-center justify-center gap-1">About <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i></div>
                             <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">గురించి</div>
                         </div>
+                        <div class="nav-indicator h-0.5 w-full bg-accent absolute bottom-0 left-0 rounded-t-md"></div>
                         <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible transform -translate-y-2 z-50">
                             <div class="py-2">
                                 <a href="#about" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
@@ -136,12 +188,12 @@
                         </div>
                     </div>
 
-                    <!-- Call for Papers Dropdown -->
-                    <div class="relative group px-2 py-4 cursor-pointer">
+                    <div class="nav-desktop-link relative group px-2 py-4 cursor-pointer" data-nav-target="papers">
                         <div class="text-center group-hover:text-primary transition-colors text-gray-600">
                             <div class="text-sm xl:text-base font-semibold flex items-center justify-center gap-1">Call for Papers <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i></div>
                             <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">పరిశోధనా పత్రాలు</div>
                         </div>
+                        <div class="nav-indicator h-0.5 w-full bg-accent absolute bottom-0 left-0 rounded-t-md"></div>
                         <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible transform -translate-y-2 z-50">
                             <div class="py-2">
                                 <a href="#topics" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
@@ -160,12 +212,12 @@
                         </div>
                     </div>
 
-                    <!-- Program Dropdown -->
-                    <div class="relative group px-2 py-4 cursor-pointer">
+                    <div class="nav-desktop-link relative group px-2 py-4 cursor-pointer" data-nav-target="program">
                         <div class="text-center group-hover:text-primary transition-colors text-gray-600">
                             <div class="text-sm xl:text-base font-semibold flex items-center justify-center gap-1">Program <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i></div>
                             <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">కార్యక్రమం</div>
                         </div>
+                        <div class="nav-indicator h-0.5 w-full bg-accent absolute bottom-0 left-0 rounded-t-md"></div>
                         <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible transform -translate-y-2 z-50">
                             <div class="py-2">
                                 <a href="#schedule" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
@@ -180,12 +232,12 @@
                         </div>
                     </div>
 
-                    <!-- Past Edition Dropdown -->
-                    <div class="relative group px-2 py-4 cursor-pointer">
+                    <div class="nav-desktop-link relative group px-2 py-4 cursor-pointer" data-nav-target="past">
                         <div class="text-center group-hover:text-primary transition-colors text-gray-600">
                             <div class="text-sm xl:text-base font-semibold flex items-center justify-center gap-1">Past Edition <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i></div>
                             <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">గత సదస్సు</div>
                         </div>
+                        <div class="nav-indicator h-0.5 w-full bg-accent absolute bottom-0 left-0 rounded-t-md"></div>
                         <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible transform -translate-y-2 z-50">
                             <div class="py-2">
                                 <a href="#proceedings" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
@@ -200,12 +252,12 @@
                         </div>
                     </div>
 
-                    <!-- Organization Dropdown -->
-                    <div class="relative group px-2 py-4 cursor-pointer">
+                    <div class="nav-desktop-link relative group px-2 py-4 cursor-pointer" data-nav-target="org">
                         <div class="text-center group-hover:text-primary transition-colors text-gray-600">
                             <div class="text-sm xl:text-base font-semibold flex items-center justify-center gap-1">Organization <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i></div>
                             <div class="telugu text-[10px] xl:text-xs text-gray-400 group-hover:text-secondary mt-0.5">కమిటీ & విచారణలు</div>
                         </div>
+                        <div class="nav-indicator h-0.5 w-full bg-accent absolute bottom-0 left-0 rounded-t-md"></div>
                         <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible transform -translate-y-2 z-50">
                             <div class="py-2">
                                 <a href="#committee" class="block px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-primary">
@@ -224,7 +276,6 @@
                         </div>
                     </div>
 
-                    <!-- CTA Button -->
                     <a href="#register" class="bg-accent hover:bg-yellow-400 text-primary px-5 py-2.5 rounded-full font-bold transition-all shadow-md flex flex-col items-center ml-2 border border-yellow-500/30 hover:scale-105">
                         <span class="text-sm">Registration</span>
                         <span class="telugu text-[9px] text-primary/80 mt-0.5">నమోదు</span>
@@ -239,15 +290,12 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown (Accordion style) -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 top-20 transition-all origin-top max-h-[calc(100vh-5rem)] overflow-y-auto pb-6">
             <div class="px-4 pt-2 space-y-1 flex flex-col divide-y divide-gray-100">
-                
                 <a href="#home" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                     Home <span class="text-xs text-gray-400 telugu">హోమ్</span>
                 </a>
-
-                <!-- About Accordion -->
+                <!-- Mobile Accordions ... -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-about', 'icon-about')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">About <span class="text-xs text-gray-400 telugu font-normal">గురించి</span></div>
@@ -259,8 +307,6 @@
                         <a href="#outcomes" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Expected Outcomes <span class="telugu text-[10px] text-gray-400 block">ఫలితాలు</span></a>
                     </div>
                 </div>
-
-                <!-- Call for Papers Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-papers', 'icon-papers')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Call for Papers <span class="text-xs text-gray-400 telugu font-normal">పరిశోధనా పత్రాలు</span></div>
@@ -272,8 +318,6 @@
                         <a href="#guidelines" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Registration <span class="telugu text-[10px] text-gray-400 block">నమోదు</span></a>
                     </div>
                 </div>
-
-                <!-- Program Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-program', 'icon-program')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Program <span class="text-xs text-gray-400 telugu font-normal">కార్యక్రమం</span></div>
@@ -284,8 +328,6 @@
                         <a href="#speakers" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Keynote Speakers <span class="telugu text-[10px] text-gray-400 block">ప్రముఖ వక్తలు</span></a>
                     </div>
                 </div>
-
-                <!-- Past Edition Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-past', 'icon-past')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Past Edition <span class="text-xs text-gray-400 telugu font-normal">గత సదస్సు</span></div>
@@ -296,8 +338,6 @@
                         <a href="#gallery" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Photo Gallery <span class="telugu text-[10px] text-gray-400 block">చిత్రమాలిక</span></a>
                     </div>
                 </div>
-
-                <!-- Organization Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-org', 'icon-org')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Organization <span class="text-xs text-gray-400 telugu font-normal">కమిటీ & విచారణలు</span></div>
@@ -309,7 +349,6 @@
                         <a href="#faq" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">FAQ <span class="telugu text-[10px] text-gray-400 block">తరచుగా అడిగే ప్రశ్నలు</span></a>
                     </div>
                 </div>
-                
                 <div class="pt-4 px-2 pb-2">
                     <a href="#register" class="mobile-link block w-full text-center bg-accent hover:bg-yellow-400 text-primary px-5 py-3 rounded-lg font-bold transition-colors shadow-md border border-yellow-500/30">
                         Registration <span class="block telugu text-[10px] mt-0.5 font-normal">నమోదు</span>
@@ -319,60 +358,70 @@
         </div>
     </nav>
 
-    <section id="home" class="hero-bg min-h-screen flex items-center relative pt-24 md:pt-28 pb-32 md:pb-40 reveal">
+    <section id="home" class="min-h-screen flex items-center relative pt-24 md:pt-28 pb-32 md:pb-40 overflow-hidden" data-nav-group="home">
+        <!-- True Parallax Background -->
+        <div class="parallax-bg absolute inset-0 w-full h-[120%] bg-cover bg-center z-0" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); top: -10%;"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-blue-900/85 md:from-primary/90 md:to-blue-900/80 z-0"></div>
+        
+        <!-- Interactive Constellation Particles -->
+        <div id="particles-js" class="absolute inset-0 z-0 opacity-60"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
             <div class="text-center max-w-5xl mx-auto mt-4 sm:mt-8">
 
-                <!-- Venue & Dates Badge -->
                 <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-6">
-                    <div class="inline-flex items-center gap-2 bg-accent/20 text-accent border border-accent/30 px-5 py-2 rounded-full text-sm font-semibold tracking-wide backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                        <i class="fas fa-calendar-alt"></i> 20-21 November 2026 <span class="hidden sm:inline">|</span>
-                        <span class="telugu text-xs font-normal">20-21 నవంబర్ 2026</span>
-                    </div>
-                    <a href="https://maps.app.goo.gl/XpYeE2CRHRdCavRu7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-2 rounded-full text-sm font-medium tracking-wide backdrop-blur-sm shadow-sm hover:shadow-md hover:bg-white/20 transition-all group cursor-pointer">
-                        <i class="fas fa-map-marker-alt text-accent group-hover:animate-bounce"></i> N Block, CBIT <span class="hidden sm:inline">|</span>
-                        <span class="telugu text-xs font-normal">ఎన్ బ్లాక్, సీబీఐటీ</span>
-                    </a>
+                    <span class="text-reveal-wrapper">
+                        <span class="text-reveal-inner delay-100 inline-flex items-center gap-2 bg-accent/20 text-accent border border-accent/30 px-5 py-2 rounded-full text-sm font-semibold tracking-wide backdrop-blur-sm shadow-sm">
+                            <i class="fas fa-calendar-alt"></i> 20-21 November 2026 <span class="hidden sm:inline">|</span>
+                            <span class="telugu text-xs font-normal">20-21 నవంబర్ 2026</span>
+                        </span>
+                    </span>
+                    <span class="text-reveal-wrapper">
+                        <a href="https://maps.app.goo.gl/XpYeE2CRHRdCavRu7" target="_blank" rel="noopener noreferrer" class="text-reveal-inner delay-200 inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-2 rounded-full text-sm font-medium tracking-wide backdrop-blur-sm shadow-sm hover:shadow-md hover:bg-white/20 transition-all group cursor-pointer">
+                            <i class="fas fa-map-marker-alt text-accent group-hover:animate-bounce"></i> N Block, CBIT <span class="hidden sm:inline">|</span>
+                            <span class="telugu text-xs font-normal">ఎన్ బ్లాక్, సీబీఐటీ</span>
+                        </a>
+                    </span>
                 </div>
 
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                    2nd Regional Conference in <br class="hidden sm:block" />
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-accent">Emerging Trends in Engineering</span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner delay-200">2nd Regional Conference in</span></span> <br class="hidden sm:block" />
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner delay-300 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-accent">Emerging Trends in Engineering</span></span>
                 </h1>
 
                 <h2 class="text-xl sm:text-2xl md:text-3xl text-blue-200 mb-6 sm:mb-8 telugu font-medium leading-relaxed px-2">
-                    ద్వితీయ ప్రాంతీయ సదస్సు<br />
-                    అభియాంత్రిక శాస్త్రంలో ఉద్భవిస్తున్న ధోరణులపై ప్రాంతీయ సదస్సు (RCETE - 2026)
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner delay-400">ద్వితీయ ప్రాంతీయ సదస్సు</span></span><br />
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner delay-500">అభియాంత్రిక శాస్త్రంలో ఉద్భవిస్తున్న ధోరణులపై ప్రాంతీయ సదస్సు (RCETE - 2026)</span></span>
                 </h2>
 
-                <!-- AICTE Vaani 3.0 Badge -->
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 rounded-2xl mx-auto mb-8 shadow-2xl relative overflow-hidden group w-full sm:w-11/12 max-w-3xl float-anim">
-                    <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-10">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shrink-0 shadow-inner p-2">
-                            <img src="AICTE-logo.png" alt="AICTE Logo" class="w-full h-full object-contain"
-                                onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-primary font-bold text-sm sm:text-base\'>AICTE</div>'">
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <p class="text-xs sm:text-sm md:text-base text-blue-200 uppercase tracking-widest font-bold mb-1">Sponsored & Supported By <span class="telugu font-normal normal-case ml-1 text-gray-300 block sm:inline">| ప్రాయోజితం & మద్దతు</span></p>
-                            <h3 class="text-lg sm:text-xl md:text-2xl text-white font-bold leading-tight">AICTE - VAANI 3.0 Scheme <span class="telugu font-normal text-sm sm:text-lg text-gray-200 block mt-1">AICTE - వాణి 3.0 పథకం</span></h3>
-                            <p class="text-accent font-medium mt-2 text-xs sm:text-sm md:text-base">Vibrant Advocacy for Advancement and Nurturing of Indian Languages</p>
-                            <p class="text-gray-300 text-[10px] sm:text-xs telugu mt-1 mb-2">భారతీయ భాషల పురోగతి మరియు పెంపకానికై శక్తివంతమైన ప్రోత్సాహం (AICTE - వాణి)</p>
-                            <p class="text-white text-xs sm:text-sm bg-primary/50 inline-block px-3 py-1 rounded-full border border-blue-500">
-                                VAANI Application Number: <span class="font-bold text-accent">2881947339</span>
-                                <span class="block telugu text-[10px] mt-0.5 text-gray-300">వాణి దరఖాస్తు సంఖ్య: 2881947339</span>
-                            </p>
+                <div class="text-reveal-wrapper w-full sm:w-11/12 max-w-3xl">
+                    <div class="text-reveal-inner delay-500 bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 rounded-2xl mx-auto mb-8 shadow-2xl relative overflow-hidden group float-anim glass-card">
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-10">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shrink-0 shadow-inner p-2">
+                                <img src="AICTE-logo.png" alt="AICTE Logo" class="w-full h-full object-contain" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-primary font-bold text-sm sm:text-base\'>AICTE</div>'">
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <p class="text-xs sm:text-sm md:text-base text-blue-200 uppercase tracking-widest font-bold mb-1">Sponsored & Supported By <span class="telugu font-normal normal-case ml-1 text-gray-300 block sm:inline">| ప్రాయోజితం & మద్దతు</span></p>
+                                <h3 class="text-lg sm:text-xl md:text-2xl text-white font-bold leading-tight">AICTE - VAANI 3.0 Scheme <span class="telugu font-normal text-sm sm:text-lg text-gray-200 block mt-1">AICTE - వాణి 3.0 పథకం</span></h3>
+                                <p class="text-accent font-medium mt-2 text-xs sm:text-sm md:text-base">Vibrant Advocacy for Advancement and Nurturing of Indian Languages</p>
+                                <p class="text-gray-300 text-[10px] sm:text-xs telugu mt-1 mb-2">భారతీయ భాషల పురోగతి మరియు పెంపకానికై శక్తివంతమైన ప్రోత్సాహం</p>
+                                <p class="text-white text-xs sm:text-sm bg-primary/50 inline-block px-3 py-1 rounded-full border border-blue-500">
+                                    VAANI Application Number: <span class="font-bold text-accent">2881947339</span>
+                                    <span class="block telugu text-[10px] mt-0.5 text-gray-300">వాణి దరఖాస్తు సంఖ్య: 2881947339</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex justify-center items-center mt-6 mb-2">
-                    <a href="#register" class="w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] hover:-translate-y-1 flex flex-col items-center justify-center gap-0.5 border border-yellow-300/40">
-                        <span>Registration</span>
-                        <span class="telugu text-xs font-normal text-primary/80">నమోదు</span>
-                    </a>
+                    <span class="text-reveal-wrapper">
+                        <a href="#register" class="text-reveal-inner delay-500 w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] hover:-translate-y-1 flex flex-col items-center justify-center gap-0.5 border border-yellow-300/40">
+                            <span>Registration</span>
+                            <span class="telugu text-xs font-normal text-primary/80">నమోదు</span>
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -384,7 +433,7 @@
         </div>
     </section>
 
-    <section id="about" class="py-16 md:py-24 bg-gray-50 reveal">
+    <section id="about" class="py-16 md:py-24 bg-gray-50 reveal" data-nav-group="about">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 md:mb-12">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2 flex items-center justify-center flex-wrap gap-2">
@@ -393,8 +442,7 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto mt-2 sm:mt-4 rounded mb-6 sm:mb-8"></div>
             </div>
 
-            <div class="bg-white rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-gray-100 max-w-4xl mx-auto text-center w-full sm:w-11/12 lg:w-full transition-transform hover:-translate-y-1 hover:shadow-md duration-300">
-                
+            <div class="glass-card bg-white rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-gray-100 max-w-4xl mx-auto text-center w-full sm:w-11/12 lg:w-full">
                 <div class="w-full max-w-3xl mx-auto mb-8 sm:mb-10 overflow-hidden rounded-2xl shadow-sm border border-gray-100 group">
                     <img src="CBIT-photo.jpg" alt="CBIT C-Block Building Campus" class="w-full h-48 sm:h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
                         onerror="this.outerHTML='<div class=\'w-full h-48 sm:h-64 md:h-80 bg-gray-100 flex items-center justify-center text-primary font-bold text-lg sm:text-xl\'>CBIT Campus</div>'">
@@ -416,8 +464,8 @@
         </div>
     </section>
 
-    <section id="objectives" class="py-16 md:py-24 bg-white border-t border-gray-100 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="objectives" class="py-16 md:py-24 bg-white border-t border-gray-100" data-nav-group="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Conference Goals <span class="telugu font-normal ml-1 text-gray-500 block sm:inline">| సదస్సు ఉద్దేశాలు</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Objectives</h3>
@@ -425,8 +473,8 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div class="bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start hover:shadow-md transition-all duration-300">
+            <div class="max-w-4xl mx-auto space-y-6 reveal-group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm">1</div>
                     <div>
                         <p class="text-gray-700 leading-relaxed text-sm sm:text-base mt-1 mb-3">To strengthen the quality, visibility, and regional participation in research and scholarly publication by developing an improved end-to-end framework covering paper submission, peer review, indexing, publication, and dissemination, while fostering collaboration among academic institutions, researchers, and industry.</p>
@@ -434,7 +482,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start hover:shadow-md transition-all duration-300">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm">2</div>
                     <div>
                         <p class="text-gray-700 leading-relaxed text-sm sm:text-base mt-1 mb-3">To establish sustainable mechanisms for scientific and technical knowledge creation and dissemination in Telugu by promoting high-quality research papers, technical articles, educational resources, scientific terminology, and digital content accessible to students, faculty, and researchers.</p>
@@ -442,7 +490,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start hover:shadow-md transition-all duration-300">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm">3</div>
                     <div>
                         <p class="text-gray-700 leading-relaxed text-sm sm:text-base mt-1 mb-3">To develop a long-term roadmap for Telugu-based academic, scientific, and technological communication by formulating policy recommendations and exploring emerging opportunities in AI, NLP, digital platforms, and other technologies to integrate Telugu into future research, innovation, and technical advancements.</p>
@@ -453,8 +501,8 @@
         </div>
     </section>
 
-    <section id="outcomes" class="py-16 md:py-24 bg-gray-50 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="outcomes" class="py-16 md:py-24 bg-gray-50" data-nav-group="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Expected Results <span class="telugu font-normal ml-1 text-gray-500 block sm:inline">| ఆశించిన ఫలితాలు</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Outcomes</h3>
@@ -462,8 +510,8 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                <div class="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 reveal-group">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-handshake"></i></div>
                         <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Improved Regional Participation and Collaboration</h4>
@@ -471,7 +519,7 @@
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">ప్రాంతీయ భాగస్వామ్యం మరియు సహకారాన్ని మెరుగుపరచడం</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-book-open"></i></div>
                         <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Increased Availability of Scientific and Engineering Resources in Telugu</h4>
@@ -479,7 +527,7 @@
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">తెలుగులో శాస్త్రీయ మరియు అభియాంత్రిక వనరుల లభ్యతను పెంచడం</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 text-accent rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-file-alt"></i></div>
                         <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Promotion of Research Publications in Telugu</h4>
@@ -487,7 +535,7 @@
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">తెలుగులో పరిశోధనా పత్రాల ప్రచురణను ప్రోత్సహించడం</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-chart-line"></i></div>
                         <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Strengthening Telugu Usage in emerging scientific and technological fields</h4>
@@ -498,8 +546,8 @@
         </div>
     </section>
 
-    <section id="topics" class="py-16 md:py-24 bg-white border-t border-gray-100 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="topics" class="py-16 md:py-24 bg-white border-t border-gray-100" data-nav-group="papers">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Research Areas <span class="telugu font-normal ml-1 text-gray-500 block sm:inline">| పరిశోధనా విభాగాలు</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Tracks & Topics</h3>
@@ -512,9 +560,8 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- Track 1 -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 reveal-group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-satellite"></i>
                     </div>
@@ -522,8 +569,7 @@
                     <p class="text-gray-600 text-sm telugu">ఆటోనమస్ నావిగేషన్ మరియు నియంత్రణ వ్యవస్థలు</p>
                 </div>
 
-                <!-- Track 2 -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-brain"></i>
                     </div>
@@ -531,8 +577,7 @@
                     <p class="text-gray-600 text-sm telugu">హెల్త్ కేర్ అండ్ బయోమెడికల్ అభియాంత్రిక శాస్త్రం లో ఏఐ</p>
                 </div>
 
-                <!-- Track 3 -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-network-wired"></i>
                     </div>
@@ -540,8 +585,7 @@
                     <p class="text-gray-600 text-sm telugu">సెన్సార్ నెట్ వర్క్ లు మరియు రియల్ టైమ్ డేటా విశ్లేషణ</p>
                 </div>
 
-                <!-- Track 4 -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-microchip"></i>
                     </div>
@@ -549,8 +593,7 @@
                     <p class="text-gray-600 text-sm telugu">VLSI మరియు Embedded Systemsలో ప్రస్తుత పరిశోధనా అంశాలు</p>
                 </div>
 
-                <!-- Track 5 -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 group md:col-span-2 lg:col-span-1">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group md:col-span-2 lg:col-span-1">
                     <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
                         <i class="fas fa-lightbulb"></i>
                     </div>
@@ -567,11 +610,14 @@
         </div>
     </section>
 
-    <section id="dates" class="py-16 md:py-24 bg-gray-900 text-white relative overflow-hidden reveal">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-blue-600 opacity-20 blur-3xl"></div>
+    <section id="dates" class="py-16 md:py-24 bg-gray-900 text-white relative overflow-hidden" data-nav-group="papers">
+        <!-- Parallax Background applied to this absolute div via JS -->
+        <div class="parallax-bg absolute inset-0 w-full h-[150%] bg-cover bg-center z-0 opacity-20 pointer-events-none mix-blend-overlay" data-speed="0.2" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); top: -25%;"></div>
+        
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-blue-600 opacity-30 blur-3xl"></div>
         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-accent opacity-20 blur-3xl"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-accent uppercase tracking-wider mb-2">Timeline <span class="telugu font-normal ml-1 text-gray-400 block sm:inline">| కాలక్రమం</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Important Dates</h3>
@@ -580,9 +626,9 @@
             </div>
 
             <div class="max-w-5xl mx-auto pl-4 sm:pl-0">
-                <div class="relative border-l-2 sm:border-l-4 border-gray-700 ml-4 sm:ml-0 md:border-l-0 md:border-t-4 md:flex md:justify-around pt-6 md:pt-12">
+                <div class="relative border-l-2 sm:border-l-4 border-gray-700 ml-4 sm:ml-0 md:border-l-0 md:border-t-4 md:flex md:justify-around pt-6 md:pt-12 reveal-group">
                     
-                    <div class="mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
+                    <div class="reveal-item mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
                         <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg">
                             <i class="fas fa-paper-plane text-gray-400 group-hover:text-white text-sm md:text-base"></i>
                         </div>
@@ -594,7 +640,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
+                    <div class="reveal-item mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
                         <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg">
                             <i class="fas fa-check-double text-gray-400 group-hover:text-white text-sm md:text-base"></i>
                         </div>
@@ -606,7 +652,7 @@
                         </div>
                     </div>
 
-                    <div class="relative pl-8 md:pl-0 w-full md:w-1/3 group">
+                    <div class="reveal-item relative pl-8 md:pl-0 w-full md:w-1/3 group">
                         <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-primary border-4 border-blue-400 flex items-center justify-center z-10 shadow-lg shadow-blue-500/50">
                             <i class="fas fa-calendar-day text-white text-sm md:text-base"></i>
                         </div>
@@ -623,11 +669,9 @@
         </div>
     </section>
 
-    <section id="register" class="py-16 md:py-24 bg-white reveal">
-        <!-- Anchor offset for navbar dropdown -->
+    <section id="register" class="py-16 md:py-24 bg-white" data-nav-group="papers">
         <span id="guidelines" class="block -mt-24 pt-24"></span>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">Registration</h2>
                 <h3 class="text-lg text-gray-500 telugu mb-4 border-b-2 border-accent inline-block pb-1">రిజిస్ట్రేషన్ విధానం</h3>
@@ -638,8 +682,7 @@
                 </div>
             </div>
 
-            <!-- Guidelines Block -->
-            <div class="max-w-4xl mx-auto bg-blue-50 rounded-2xl p-6 sm:p-8 border border-blue-100 shadow-sm mb-10">
+            <div class="max-w-4xl mx-auto bg-blue-50 rounded-2xl p-6 sm:p-8 border border-blue-100 shadow-sm mb-10 glass-card">
                 <h4 class="text-xl font-bold text-primary mb-3 flex items-center gap-2">
                     <i class="fas fa-file-word"></i> Formatting Guidelines 
                     <span class="telugu text-base font-normal text-gray-600 ml-2">| ఫార్మాటింగ్ మార్గదర్శకాలు</span>
@@ -648,15 +691,14 @@
                 <p class="text-gray-600 telugu text-sm">సమర్పించిన పత్రాలన్నీ అసలైనవిగా ఉండాలి, ప్రామాణిక ఫార్మాటింగ్ మార్గదర్శకాలకు కచ్చితంగా కట్టుబడి ఉండాలి మరియు AICTE వాణి పథకం అవసరాల ప్రకారం తెలుగు కోసం అనువదించబడిన కంటెంట్‌ను కలిగి ఉండాలి.</p>
             </div>
 
-            <!-- Registration Steps Block -->
             <div class="max-w-4xl mx-auto bg-gray-50 rounded-2xl p-6 sm:p-8 md:p-10 border border-gray-200 shadow-sm relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full mix-blend-multiply filter blur-2xl opacity-70"></div>
                 
                 <h4 class="text-xl font-bold text-gray-800 mb-2">Steps to Register & Submit via AICTE ATAL Academy:</h4>
                 <p class="telugu text-gray-500 mb-6 border-b border-gray-200 pb-3">AICTE ATAL అకాడమీ ద్వారా నమోదు మరియు సమర్పణ దశలు:</p>
                 
-                <ol class="space-y-6 text-gray-700 relative z-10">
-                    <li class="flex items-start gap-4">
+                <ol class="space-y-6 text-gray-700 relative z-10 reveal-group">
+                    <li class="reveal-item flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 shadow mt-1">1</div>
                         <div>
                             <p class="font-semibold text-lg mb-1">Register at AICTE ATAL Academy</p>
@@ -664,7 +706,7 @@
                             <a href="https://atalacademy.aicte-india.org/login" target="_blank" class="text-secondary hover:underline font-medium break-all">https://atalacademy.aicte-india.org/login</a>
                         </div>
                     </li>
-                    <li class="flex items-start gap-4">
+                    <li class="reveal-item flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 shadow mt-1">2</div>
                         <div>
                             <p class="font-semibold text-lg mb-1">Upload personal details and institutional NOC</p>
@@ -674,28 +716,28 @@
                             </a>
                         </div>
                     </li>
-                    <li class="flex items-start gap-4">
+                    <li class="reveal-item flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 shadow mt-1">3</div>
                         <div>
                             <p class="font-semibold text-lg mb-1">Select "VAANI" and choose event month as "November"</p>
                             <p class="telugu text-gray-600">"VAANI" ఎంపిక చేసి, ఈవెంట్ మాసాన్ని "నవంబర్"గా ఎంచుకోండి.</p>
                         </div>
                     </li>
-                    <li class="flex items-start gap-4">
+                    <li class="reveal-item flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 shadow mt-1">4</div>
                         <div>
                             <p class="font-semibold text-lg mb-1">Select the Event</p>
                             <p class="telugu text-gray-600">"2nd Regional Conference on Emerging Trends in Engineering – RCETE 2026" అనే ఈవెంట్‌ను ఎంపిక చేయండి.</p>
                         </div>
                     </li>
-                    <li class="flex items-start gap-4">
+                    <li class="reveal-item flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold shrink-0 shadow mt-1 animate-pulse">5</div>
                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 w-full">
                             <p class="font-bold text-lg text-primary mb-1">Please Select / Search the dates Nov 20 and 21</p>
                             <p class="telugu text-gray-600 text-sm">దయచేసి నవంబర్ 20 మరియు 21 తేదీలను ఎంచుకోండి.</p>
                         </div>
                     </li>
-                     <li class="flex items-start gap-4">
+                     <li class="reveal-item flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 shadow mt-1">6</div>
                         <div>
                             <p class="font-semibold text-lg mb-1">Press Ok for submission</p>
@@ -704,7 +746,7 @@
                     </li>
                 </ol>
                 
-                <div class="mt-8 text-center bg-white p-5 rounded-xl border border-blue-100 shadow-sm relative z-10 border-l-4 border-l-secondary">
+                <div class="mt-8 text-center bg-white p-5 rounded-xl border border-blue-100 shadow-sm relative z-10 border-l-4 border-l-secondary reveal">
                     <p class="text-gray-800 font-medium text-lg leading-relaxed mb-2">
                         This conference will be a great platform to bring your research to the public in Telugu. We look forward to your participation!
                     </p>
@@ -716,8 +758,8 @@
         </div>
     </section>
 
-    <section id="schedule" class="py-16 md:py-24 bg-gray-100 border-t border-gray-200 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="schedule" class="py-16 md:py-24 bg-gray-100 border-t border-gray-200" data-nav-group="program">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Program Details <span class="telugu font-normal ml-1 text-gray-500 block sm:inline">| కార్యక్రమ వివరాలు</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Conference Schedule</h3>
@@ -725,9 +767,9 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="max-w-5xl mx-auto w-full space-y-8">
+            <div class="max-w-5xl mx-auto w-full space-y-8 reveal-group">
                 <!-- Day 1 Card -->
-                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+                <div class="reveal-item bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden glass-card">
                     <div class="bg-primary text-white p-4 md:p-6 border-b-4 border-accent flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
                         <div>
                             <h4 class="text-lg sm:text-xl font-bold">Day 1: November 20, 2026</h4>
@@ -803,7 +845,7 @@
                 </div>
 
                 <!-- Day 2 Card -->
-                <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+                <div class="reveal-item bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden glass-card">
                     <div class="bg-gray-800 text-white p-4 md:p-6 border-b-4 border-secondary flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
                         <div>
                             <h4 class="text-lg sm:text-xl font-bold">Day 2: November 21, 2026</h4>
@@ -882,8 +924,8 @@
         </div>
     </section>
 
-    <section id="speakers" class="py-16 md:py-24 bg-white border-t border-gray-100 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="speakers" class="py-16 md:py-24 bg-white border-t border-gray-100" data-nav-group="program">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Guest & Keynotes <span class="telugu font-normal ml-1 text-gray-500 block sm:inline">| అతిథులు & వక్తలు</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Eminent Speakers</h3>
@@ -891,8 +933,8 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
-                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto reveal-group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
                         <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
@@ -905,7 +947,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
                         <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
@@ -918,7 +960,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
                         <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
@@ -931,7 +973,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
                         <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
@@ -947,9 +989,9 @@
         </div>
     </section>
 
-    <section id="past-edition" class="py-16 md:py-24 bg-gray-50 border-t border-gray-100 reveal">
+    <section id="past-edition" class="py-16 md:py-24 bg-gray-50 border-t border-gray-100" data-nav-group="past">
         <span id="proceedings" class="block -mt-24 pt-24"></span>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Previous Edition <span class="telugu font-normal ml-1 text-gray-400 block sm:inline">| గత సంచిక</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">RCETE 2025 Highlights</h3>
@@ -958,7 +1000,7 @@
             </div>
 
             <!-- Proceedings Spotlight Card -->
-            <div class="max-w-4xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-16 shadow-sm hover:shadow-md transition-shadow">
+            <div class="max-w-4xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-16 shadow-sm glass-card">
                 <div class="w-32 h-44 sm:w-40 sm:h-52 bg-white shadow-md border border-gray-200 rounded-lg flex flex-col items-center justify-center shrink-0 relative overflow-hidden group">
                     <div class="absolute inset-0 bg-gradient-to-br from-primary to-blue-800 opacity-10"></div>
                     <i class="fas fa-book-open text-4xl sm:text-5xl text-primary group-hover:scale-110 transition-transform mb-2"></i>
@@ -1001,48 +1043,38 @@
 
             <!-- Horizontal Scroll Photo Gallery Grid -->
             <span id="gallery" class="block -mt-24 pt-24"></span>
-            <div class="max-w-[1536px] mx-auto w-full overflow-hidden">
+            <div class="max-w-[1536px] mx-auto w-full overflow-hidden reveal">
                 <h4 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Moments from RCETE 2025 <span class="telugu font-normal text-base text-gray-500 block mt-1">గత సదస్సు చిత్రమాలిక</span></h4>
                 
-                <div id="gallery-container" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 pt-2 px-2 sm:px-4 hide-scrollbar w-full">
-                    <!-- Photo 1 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                <div id="gallery-container" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 pt-2 px-2 sm:px-4 hide-scrollbar w-full reveal-group">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-1.jpg" alt="RCETE 2025 Conference Audience Seated" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+1'">
                     </div>
-                    <!-- Photo 2 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-2.jpg" alt="RCETE 2025 Keynote Speaker Presenting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+2'">
                     </div>
-                    <!-- Photo 3 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-3.jpg" alt="RCETE 2025 Expert Panel Discussion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+3'">
                     </div>
-                    <!-- Photo 4 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-4.jpg" alt="RCETE 2025 Attendees Networking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+4'">
                     </div>
-                    <!-- Photo 5 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-5.jpg" alt="RCETE 2025 Technical Paper Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+5'">
                     </div>
-                    <!-- Photo 6 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-6.jpg" alt="RCETE 2025 Audience Listening to Speech" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+6'">
                     </div>
-                    <!-- Photo 7 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-7.jpg" alt="RCETE 2025 Research Discussion Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+7'">
                     </div>
-                    <!-- Photo 8 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-8.jpg" alt="RCETE 2025 Main Conference Event Hall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+8'">
                     </div>
-                    <!-- Photo 9 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-9.jpg" alt="RCETE 2025 Certificate and Award Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+9'">
                     </div>
-                    <!-- Photo 10 -->
-                    <div class="shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
                         <img src="photo-10.jpg" alt="RCETE 2025 Organizing Team Group Photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+10'">
                     </div>
                 </div>
@@ -1064,8 +1096,8 @@
         </div>
     </section>
 
-    <section id="committee" class="py-16 md:py-24 bg-white border-t border-gray-100 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="committee" class="py-16 md:py-24 bg-white border-t border-gray-100" data-nav-group="org">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Leadership <span class="telugu font-normal ml-1 text-gray-400 block sm:inline">| నాయకత్వం</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Organizing Committee</h3>
@@ -1073,9 +1105,9 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden w-full lg:w-full">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden w-full lg:w-full glass-card reveal-group">
                 <ul class="divide-y divide-gray-100">
-                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div class="flex items-center gap-3 sm:gap-4">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 text-secondary rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-crown"></i></div>
                             <div>
@@ -1089,8 +1121,7 @@
                             <p class="text-gray-500 telugu text-xs sm:text-sm">శ్రీ. ఎన్.సుభాష్. ప్రెసిడెంట్, సీబీఐటీ.</p>
                         </div>
                     </li>
-
-                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div class="flex items-center gap-3 sm:gap-4">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-star"></i></div>
                             <div>
@@ -1104,8 +1135,7 @@
                             <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య సి.వి.నరసింహులు, ప్రిన్సిపల్, సీబీఐటీ.</p>
                         </div>
                     </li>
-
-                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div class="flex items-center gap-3 sm:gap-4">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-user-tie"></i></div>
                             <div>
@@ -1119,8 +1149,7 @@
                             <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య ఎన్.వి.కోటేశ్వరరావు, సంచాలకుడు-ఐక్యూఏసీ, సీబీఐటీ.</p>
                         </div>
                     </li>
-
-                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div class="flex items-center gap-3 sm:gap-4">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-user-tie"></i></div>
                             <div>
@@ -1134,8 +1163,7 @@
                             <p class="text-gray-500 telugu text-xs sm:text-sm">డా|| కె.వసంత్, ఈసీఈ శాఖ అధిపతి, సీబీఐటీ.</p>
                         </div>
                     </li>
-
-                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div class="flex items-center gap-3 sm:gap-4">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-amber-50 text-accent rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-users-cog"></i></div>
                             <div>
@@ -1149,8 +1177,7 @@
                             <p class="text-gray-500 telugu text-xs sm:text-sm">డా|| టి.శ్రీధర్, అధ్యాపకుడు, ఈసీఈ.</p>
                         </div>
                     </li>
-
-                    <li class="p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div class="flex items-center gap-3 sm:gap-4">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-user-friends"></i></div>
                             <div>
@@ -1169,9 +1196,9 @@
         </div>
     </section>
 
-    <section id="contact" class="py-16 md:py-24 bg-blue-900 text-white relative overflow-hidden reveal">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-950 to-primary opacity-80"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" class="py-16 md:py-24 bg-blue-900 text-white relative overflow-hidden" data-nav-group="org">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-950 to-primary opacity-80 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-accent uppercase tracking-wider mb-2">Get in Touch <span class="telugu font-normal ml-1 text-blue-300 block sm:inline">| మమ్మల్ని సంప్రదించండి</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Queries & Support</h3>
@@ -1179,9 +1206,9 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-10 border border-white/20 shadow-2xl">
+            <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-10 border border-white/20 shadow-2xl glass-card reveal-group">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
+                    <div class="reveal-item bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
                         <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center text-lg mb-3 shadow-md"><i class="fas fa-user-tie"></i></div>
                         <h4 class="font-bold text-lg mb-1">Dr. T. Sridher</h4>
                         <p class="text-xs text-blue-200 mb-3">Coordinator, Asst. Professor, ECE</p>
@@ -1190,8 +1217,7 @@
                             <i class="fas fa-phone-alt"></i> 8801206497
                         </a>
                     </div>
-
-                    <div class="bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
+                    <div class="reveal-item bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
                         <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center text-lg mb-3 shadow-md"><i class="fas fa-user-friends"></i></div>
                         <h4 class="font-bold text-lg mb-1">Dr. D. Nagadevi</h4>
                         <p class="text-xs text-blue-200 mb-3">Co-Coordinator, Asst. Professor, ECE</p>
@@ -1205,8 +1231,8 @@
         </div>
     </section>
 
-    <section id="faq" class="py-16 md:py-24 bg-white border-t border-gray-100 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" class="py-16 md:py-24 bg-white border-t border-gray-100" data-nav-group="org">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-2">Help & Information <span class="telugu font-normal ml-1 text-gray-400 block sm:inline">| సహాయం & సమాచారం</span></h2>
                 <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-2">Frequently Asked Questions</h3>
@@ -1214,8 +1240,8 @@
                 <div class="w-16 sm:w-20 h-1 bg-accent mx-auto rounded"></div>
             </div>
 
-            <div class="max-w-4xl mx-auto space-y-4">
-                <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+            <div class="max-w-4xl mx-auto space-y-4 reveal-group">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
@@ -1230,7 +1256,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
@@ -1245,7 +1271,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
@@ -1260,7 +1286,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
@@ -1272,25 +1298,6 @@
                     <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
                         <p class="text-gray-700 font-medium">Yes! Under the AICTE VAANI scheme, presentations and research publications promoting Telugu in engineering and sciences are highly encouraged.</p>
                         <p class="text-sm text-gray-600 telugu mt-2">అవును! AICTE VAANI పథకం కింద, ఇంజనీరింగ్ మరియు విజ్ఞాన శాస్త్రాలలో తెలుగును ప్రోత్సహించే ప్రెజెంటేషన్లు మరియు పరిశోధనా ప్రచురణలు ఎంతగానో ప్రోత్సహించబడతాయి.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
-                    <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
-                        <div>
-                            <h4 class="font-bold text-gray-900">Whom should I contact for more details?</h4>
-                            <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">మరిన్ని వివరాల కోసం నేను ఎవరిని సంప్రదించాలి?</p>
-                        </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
-                        <p class="text-gray-700 mb-2">You can contact the conference coordinators:</p>
-                        <ul class="space-y-2">
-                            <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:8801206497" class="hover:underline font-semibold">Dr. T. Sridher: 8801206497</a></li>
-                            <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:9704111749" class="hover:underline font-semibold">Dr. D. Nagadevi: 9704111749</a></li>
-                        </ul>
-                        <p class="text-sm text-gray-600 telugu mt-3">మీరు సమన్వయకర్తలను సంప్రదించవచ్చు: డా|| టి.శ్రీధర్ (8801206497), డా|| డి.నాగదేవి (9704111749).</p>
                     </div>
                 </div>
             </div>
@@ -1333,12 +1340,11 @@
     </footer>
 
     <script>
-        // Function to handle mobile accordion menus
+        // Setup Mobile Navigation 
         window.toggleMobileNav = function(menuId, iconId) {
             const menu = document.getElementById(menuId);
             const icon = document.getElementById(iconId);
             
-            // Close other open menus
             document.querySelectorAll('.mobile-nav-menu').forEach(m => {
                 if (m.id !== menuId) m.classList.add('hidden');
             });
@@ -1346,80 +1352,170 @@
                 if (i.id !== iconId) i.classList.remove('rotate-180');
             });
 
-            // Toggle target menu
             menu.classList.toggle('hidden');
             if(icon) icon.classList.toggle('rotate-180');
         };
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Main Mobile Menu Toggle Logic
+            // 1. Initialize Particles.js (Constellation Web)
+            if(document.getElementById('particles-js')) {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 60, density: { enable: true, value_area: 800 } },
+                        color: { value: "#ffffff" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.3, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+                        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "grab" },
+                            resize: true
+                        },
+                        modes: { grab: { distance: 180, line_linked: { opacity: 0.6 } } }
+                    },
+                    retina_detect: true
+                });
+            }
+
+            // 2. Reading Progress Bar & Parallax Backgrounds
+            const progressBar = document.getElementById('progress-bar');
+            const parallaxBgs = document.querySelectorAll('.parallax-bg');
+
+            window.addEventListener('scroll', () => {
+                requestAnimationFrame(() => {
+                    // Update Progress Bar
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = (winScroll / height) * 100;
+                    if(progressBar) progressBar.style.width = scrolled + "%";
+
+                    // Update Parallax Backgrounds
+                    parallaxBgs.forEach(bg => {
+                        const speed = bg.getAttribute('data-speed') || 0.4;
+                        // Calculate offset relative to the section's position to prevent jumping
+                        const sectionTop = bg.closest('section').offsetTop;
+                        const scrollOffset = winScroll - sectionTop;
+                        bg.style.transform = `translateY(${scrollOffset * speed}px)`;
+                    });
+                });
+            });
+
+            // 3. Scroll Spy for Active Nav Links
+            const sections = document.querySelectorAll("section[data-nav-group]");
+            const navItems = document.querySelectorAll(".nav-desktop-link");
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Add a slight offset margin so it activates cleanly
+                    if (window.scrollY >= (sectionTop - 250)) {
+                        current = section.getAttribute("data-nav-group");
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove("nav-active", "text-primary");
+                    if (item.getAttribute("data-nav-target") === current) {
+                        item.classList.add("nav-active", "text-primary");
+                    }
+                });
+            });
+
+            // 4. Staggered Scroll Wave (Intersection Observer)
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Handle standard reveals
+                        if(entry.target.classList.contains('reveal')) {
+                            entry.target.classList.add('active');
+                        }
+                        
+                        // Handle grouped staggered reveals
+                        if(entry.target.classList.contains('reveal-group')) {
+                            const children = entry.target.querySelectorAll('.reveal-item');
+                            children.forEach((child, index) => {
+                                // Add 150ms delay per child
+                                setTimeout(() => {
+                                    child.classList.add('active');
+                                }, index * 150);
+                            });
+                        }
+                        
+                        // Text reveals specific handling
+                        if(entry.target.id === 'home' || entry.target.classList.contains('reveal')) {
+                            const texts = entry.target.querySelectorAll('.text-reveal-inner');
+                            texts.forEach(text => text.classList.add('active'));
+                        }
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            // Observe all standard reveals and staggered groups
+            document.querySelectorAll('.reveal, .reveal-group').forEach(el => revealOnScroll.observe(el));
+
+            // Trigger hero text animations immediately on load
+            setTimeout(() => {
+                document.querySelectorAll('#home .text-reveal-inner').forEach(text => text.classList.add('active'));
+            }, 100);
+
+            // 5. Mobile Menu Logic
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             
             if (btn && menu) {
                 const icon = btn.querySelector('i');
-
-                function toggleMenu() {
+                btn.addEventListener('click', () => {
                     menu.classList.toggle('hidden');
-                    
                     if (menu.classList.contains('hidden')) {
-                        if(icon) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
-                        // Reset all inner accordions when main menu closes
+                        if(icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
                         document.querySelectorAll('.mobile-nav-menu').forEach(m => m.classList.add('hidden'));
                         document.querySelectorAll('.mobile-nav-icon').forEach(i => i.classList.remove('rotate-180'));
                     } else {
-                        if(icon) {
-                            icon.classList.remove('fa-bars');
-                            icon.classList.add('fa-times');
-                        }
+                        if(icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
                     }
-                }
+                });
 
-                btn.addEventListener('click', toggleMenu);
-
-                // Close mobile menu completely when a specific section link is clicked
-                const mobileLinks = document.querySelectorAll('.mobile-link');
-                mobileLinks.forEach(link => {
+                document.querySelectorAll('.mobile-link').forEach(link => {
                     link.addEventListener('click', () => {
                         menu.classList.add('hidden');
-                        if(icon) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        }
-                        
-                        // Added logic: ensure sub-menus reset if closed via clicking a link
+                        if(icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
                         document.querySelectorAll('.mobile-nav-menu').forEach(m => m.classList.add('hidden'));
                         document.querySelectorAll('.mobile-nav-icon').forEach(i => i.classList.remove('rotate-180'));
                     });
                 });
             }
 
-            // Sticky Navbar Shadow on Scroll
+            // 6. Sticky Navbar Logic
             const navbar = document.getElementById('navbar');
             if (navbar) {
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 20) {
-                        navbar.classList.add('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+                        navbar.classList.add('shadow-lg');
                         navbar.classList.remove('shadow-md');
                     } else {
-                        navbar.classList.remove('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
                         navbar.classList.add('shadow-md');
+                        navbar.classList.remove('shadow-lg');
                     }
                 });
             }
 
-            // Gallery Horizontal Scroll Logic
+            // 7. Gallery Horizontal Scroll Logic
             const gallery = document.getElementById('gallery-container');
             const scrollLeftBtn = document.getElementById('scroll-left');
             const scrollRightBtn = document.getElementById('scroll-right');
 
             if (gallery && scrollLeftBtn && scrollRightBtn) {
                 scrollLeftBtn.addEventListener('click', () => {
-                    // Dynamically calculate width of one card + the gap
                     const card = gallery.firstElementChild;
                     if(card) {
                         const cardWidth = card.offsetWidth;
@@ -1429,35 +1525,12 @@
                 });
 
                 scrollRightBtn.addEventListener('click', () => {
-                    // Dynamically calculate width of one card + the gap
                     const card = gallery.firstElementChild;
                     if(card) {
                         const cardWidth = card.offsetWidth;
                         const gap = parseFloat(getComputedStyle(gallery).gap) || 16;
                         gallery.scrollBy({ left: (cardWidth + gap), behavior: 'smooth' });
                     }
-                });
-            }
-
-            // Scroll Reveal Animation Logic
-            const reveals = document.querySelectorAll('.reveal');
-            if(reveals.length > 0) {
-                const revealOptions = {
-                    threshold: 0.15,
-                    rootMargin: "0px 0px -50px 0px"
-                };
-
-                const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, revealOptions);
-
-                reveals.forEach(reveal => {
-                    revealOnScroll.observe(reveal);
                 });
             }
         });
