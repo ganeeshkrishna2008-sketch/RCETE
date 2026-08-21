@@ -35,7 +35,7 @@
     </script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden;}
         .telugu { font-family: 'Noto Sans Telugu', sans-serif; }
 
         /* Dropdown transition utilities */
@@ -141,7 +141,8 @@
     <!-- Reading Progress Bar -->
     <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent to-yellow-300 z-[100] w-0 transition-all duration-150 ease-out shadow-[0_0_10px_rgba(245,158,11,0.7)]"></div>
 
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md" id="navbar">
+    <!-- Solid White Navbar -->
+    <nav class="fixed w-full z-50 transition-shadow duration-300 bg-white shadow-md" id="navbar">
         <div class="max-w-[1536px] mx-auto px-2 lg:px-4 xl:px-6">
             <div class="flex justify-between items-center h-20 lg:h-24">
                 
@@ -276,7 +277,8 @@
                         </div>
                     </div>
 
-                    <a href="#register" class="bg-accent hover:bg-yellow-400 text-primary px-5 py-2.5 rounded-full font-bold transition-all shadow-md flex flex-col items-center ml-2 border border-yellow-500/30 hover:scale-105">
+                    <!-- Fast glowing button without wrapper restriction -->
+                    <a href="#register" class="bg-accent hover:bg-yellow-400 text-primary px-5 py-2.5 rounded-full font-bold transition-all duration-300 ease-out shadow-md hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] flex flex-col items-center ml-2 border border-yellow-500/30 hover:scale-105">
                         <span class="text-sm">Registration</span>
                         <span class="telugu text-[9px] text-primary/80 mt-0.5">నమోదు</span>
                     </a>
@@ -292,10 +294,12 @@
 
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 top-20 transition-all origin-top max-h-[calc(100vh-5rem)] overflow-y-auto pb-6">
             <div class="px-4 pt-2 space-y-1 flex flex-col divide-y divide-gray-100">
+                
                 <a href="#home" class="mobile-link block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                     Home <span class="text-xs text-gray-400 telugu">హోమ్</span>
                 </a>
-                <!-- Mobile Accordions ... -->
+
+                <!-- About Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-about', 'icon-about')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">About <span class="text-xs text-gray-400 telugu font-normal">గురించి</span></div>
@@ -307,6 +311,8 @@
                         <a href="#outcomes" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Expected Outcomes <span class="telugu text-[10px] text-gray-400 block">ఫలితాలు</span></a>
                     </div>
                 </div>
+
+                <!-- Call for Papers Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-papers', 'icon-papers')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Call for Papers <span class="text-xs text-gray-400 telugu font-normal">పరిశోధనా పత్రాలు</span></div>
@@ -318,6 +324,8 @@
                         <a href="#guidelines" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Registration <span class="telugu text-[10px] text-gray-400 block">నమోదు</span></a>
                     </div>
                 </div>
+
+                <!-- Program Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-program', 'icon-program')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Program <span class="text-xs text-gray-400 telugu font-normal">కార్యక్రమం</span></div>
@@ -328,6 +336,8 @@
                         <a href="#speakers" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Keynote Speakers <span class="telugu text-[10px] text-gray-400 block">ప్రముఖ వక్తలు</span></a>
                     </div>
                 </div>
+
+                <!-- Past Edition Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-past', 'icon-past')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Past Edition <span class="text-xs text-gray-400 telugu font-normal">గత సదస్సు</span></div>
@@ -338,6 +348,8 @@
                         <a href="#gallery" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">Photo Gallery <span class="telugu text-[10px] text-gray-400 block">చిత్రమాలిక</span></a>
                     </div>
                 </div>
+
+                <!-- Organization Accordion -->
                 <div>
                     <button onclick="window.toggleMobileNav('mob-org', 'icon-org')" class="w-full px-3 py-3 text-left text-base font-medium text-gray-700 hover:text-primary flex items-center justify-between">
                         <div class="flex items-center gap-2">Organization <span class="text-xs text-gray-400 telugu font-normal">కమిటీ & విచారణలు</span></div>
@@ -349,6 +361,7 @@
                         <a href="#faq" class="mobile-link block text-sm text-gray-600 hover:text-primary py-1 border-l-2 border-transparent hover:border-primary pl-2">FAQ <span class="telugu text-[10px] text-gray-400 block">తరచుగా అడిగే ప్రశ్నలు</span></a>
                     </div>
                 </div>
+                
                 <div class="pt-4 px-2 pb-2">
                     <a href="#register" class="mobile-link block w-full text-center bg-accent hover:bg-yellow-400 text-primary px-5 py-3 rounded-lg font-bold transition-colors shadow-md border border-yellow-500/30">
                         Registration <span class="block telugu text-[10px] mt-0.5 font-normal">నమోదు</span>
@@ -364,14 +377,14 @@
         <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-blue-900/85 md:from-primary/90 md:to-blue-900/80 z-0"></div>
         
         <!-- Interactive Constellation Particles -->
-        <div id="particles-js" class="absolute inset-0 z-0 opacity-60"></div>
+        <div id="particles-js" class="absolute inset-0 z-0 opacity-60 pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
             <div class="text-center max-w-5xl mx-auto mt-4 sm:mt-8">
 
                 <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 mb-6">
                     <span class="text-reveal-wrapper">
-                        <span class="text-reveal-inner delay-100 inline-flex items-center gap-2 bg-accent/20 text-accent border border-accent/30 px-5 py-2 rounded-full text-sm font-semibold tracking-wide backdrop-blur-sm shadow-sm">
+                        <span class="text-reveal-inner delay-100 inline-flex items-center gap-2 bg-accent/20 text-accent border border-accent/30 px-5 py-2 rounded-full text-sm font-semibold tracking-wide backdrop-blur-sm shadow-sm hover:bg-accent/30 transition-colors">
                             <i class="fas fa-calendar-alt"></i> 20-21 November 2026 <span class="hidden sm:inline">|</span>
                             <span class="telugu text-xs font-normal">20-21 నవంబర్ 2026</span>
                         </span>
@@ -398,7 +411,7 @@
                     <div class="text-reveal-inner delay-500 bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-6 rounded-2xl mx-auto mb-8 shadow-2xl relative overflow-hidden group float-anim glass-card">
                         <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-10">
-                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shrink-0 shadow-inner p-2">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shrink-0 shadow-inner p-2 transform group-hover:rotate-12 transition-transform duration-500">
                                 <img src="AICTE-logo.png" alt="AICTE Logo" class="w-full h-full object-contain" onerror="this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-primary font-bold text-sm sm:text-base\'>AICTE</div>'">
                             </div>
                             <div class="text-center sm:text-left">
@@ -416,12 +429,11 @@
                 </div>
 
                 <div class="flex justify-center items-center mt-6 mb-2">
-                    <span class="text-reveal-wrapper">
-                        <a href="#register" class="text-reveal-inner delay-500 w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] hover:-translate-y-1 flex flex-col items-center justify-center gap-0.5 border border-yellow-300/40">
-                            <span>Registration</span>
-                            <span class="telugu text-xs font-normal text-primary/80">నమోదు</span>
-                        </a>
-                    </span>
+                    <!-- Standard reveal wrapper removed here so shadow isn't clipped -->
+                    <a href="#register" class="reveal delay-500 w-full sm:w-auto px-10 py-3.5 text-base sm:text-lg font-bold rounded-full bg-accent text-primary hover:bg-yellow-400 transition-all duration-300 ease-out shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:shadow-[0_0_25px_rgba(245,158,11,0.8)] hover:-translate-y-1 flex flex-col items-center justify-center gap-0.5 border border-yellow-300/40">
+                        <span>Registration</span>
+                        <span class="telugu text-xs font-normal text-primary/80">నమోదు</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -475,7 +487,7 @@
 
             <div class="max-w-4xl mx-auto space-y-6 reveal-group">
                 <div class="reveal-item glass-card bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm">1</div>
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm group-hover:scale-110 transition-transform">1</div>
                     <div>
                         <p class="text-gray-700 leading-relaxed text-sm sm:text-base mt-1 mb-3">To strengthen the quality, visibility, and regional participation in research and scholarly publication by developing an improved end-to-end framework covering paper submission, peer review, indexing, publication, and dissemination, while fostering collaboration among academic institutions, researchers, and industry.</p>
                         <p class="text-gray-500 telugu leading-relaxed text-sm">విద్యా సంస్థలు, పరిశోధకులు మరియు పరిశ్రమల మధ్య సహకారాన్ని పెంపొందిస్తూ, పేపర్ సమర్పణ, పీర్ రివ్యూ, ఇండెక్సింగ్, ప్రచురణ మరియు వ్యాప్తిని కవర్ చేసే మెరుగైన ఎండ్-టు-ఎండ్ ఫ్రేమ్‌వర్క్‌ను అభివృద్ధి చేయడం ద్వారా పరిశోధన మరియు పండిత ప్రచురణలో నాణ్యత, దృశ్యమానత మరియు ప్రాంతీయ భాగస్వామ్యాన్ని బలోపేతం చేయడం.</p>
@@ -483,7 +495,7 @@
                 </div>
 
                 <div class="reveal-item glass-card bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm">2</div>
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm group-hover:scale-110 transition-transform">2</div>
                     <div>
                         <p class="text-gray-700 leading-relaxed text-sm sm:text-base mt-1 mb-3">To establish sustainable mechanisms for scientific and technical knowledge creation and dissemination in Telugu by promoting high-quality research papers, technical articles, educational resources, scientific terminology, and digital content accessible to students, faculty, and researchers.</p>
                         <p class="text-gray-500 telugu leading-relaxed text-sm">విద్యార్థులు, అధ్యాపకులు మరియు పరిశోధకులకు అందుబాటులో ఉండే అధిక-నాణ్యత పరిశోధనా పత్రాలు, సాంకేతిక కథనాలు, విద్యా వనరులు, శాస్త్రీయ పరిభాష మరియు డిజిటల్ కంటెంట్‌ను ప్రోత్సహించడం ద్వారా తెలుగులో శాస్త్రీయ మరియు సాంకేతిక జ్ఞాన సృష్టి మరియు వ్యాప్తి కోసం స్థిరమైన యంత్రాంగాలను ఏర్పాటు చేయడం.</p>
@@ -491,7 +503,7 @@
                 </div>
 
                 <div class="reveal-item glass-card bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm">3</div>
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center shrink-0 font-bold text-xl shadow-sm group-hover:scale-110 transition-transform">3</div>
                     <div>
                         <p class="text-gray-700 leading-relaxed text-sm sm:text-base mt-1 mb-3">To develop a long-term roadmap for Telugu-based academic, scientific, and technological communication by formulating policy recommendations and exploring emerging opportunities in AI, NLP, digital platforms, and other technologies to integrate Telugu into future research, innovation, and technical advancements.</p>
                         <p class="text-gray-500 telugu leading-relaxed text-sm">భవిష్యత్తులో పరిశోధన, ఆవిష్కరణలు మరియు సాంకేతిక పురోగతులలో తెలుగును ఏకీకృతం చేయడానికి విధాన సిఫార్సులను రూపొందించడం మరియు AI, NLP, డిజిటల్ ప్లాట్‌ఫారమ్‌లు మరియు ఇతర సాంకేతికతలలో ఉద్భవిస్తున్న అవకాశాలను అన్వేషించడం ద్వారా తెలుగు-ఆధారిత విద్యా, శాస్త్రీయ మరియు సాంకేతిక సంభాషణల కోసం దీర్ఘకాలిక రోడ్‌మ్యాప్‌ను అభివృద్ధి చేయడం.</p>
@@ -511,34 +523,34 @@
             </div>
 
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 reveal-group">
-                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm group">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-handshake"></i></div>
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Improved Regional Participation and Collaboration</h4>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300"><i class="fas fa-handshake"></i></div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight group-hover:text-green-600 transition-colors">Improved Regional Participation and Collaboration</h4>
                     </div>
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">ప్రాంతీయ భాగస్వామ్యం మరియు సహకారాన్ని మెరుగుపరచడం</p>
                 </div>
 
-                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm group">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-book-open"></i></div>
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Increased Availability of Scientific and Engineering Resources in Telugu</h4>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 text-secondary rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0 group-hover:bg-secondary group-hover:text-white transition-colors duration-300"><i class="fas fa-book-open"></i></div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight group-hover:text-secondary transition-colors">Increased Availability of Scientific and Engineering Resources in Telugu</h4>
                     </div>
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">తెలుగులో శాస్త్రీయ మరియు అభియాంత్రిక వనరుల లభ్యతను పెంచడం</p>
                 </div>
 
-                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm group">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 text-accent rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-file-alt"></i></div>
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Promotion of Research Publications in Telugu</h4>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 text-accent rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-300"><i class="fas fa-file-alt"></i></div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight group-hover:text-accent transition-colors">Promotion of Research Publications in Telugu</h4>
                     </div>
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">తెలుగులో పరిశోధనా పత్రాల ప్రచురణను ప్రోత్సహించడం</p>
                 </div>
 
-                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm group">
                     <div class="flex items-start sm:items-center gap-4 mb-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0"><i class="fas fa-chart-line"></i></div>
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Strengthening Telugu Usage in emerging scientific and technological fields</h4>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-lg shadow-sm shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300"><i class="fas fa-chart-line"></i></div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 leading-tight group-hover:text-purple-600 transition-colors">Strengthening Telugu Usage in emerging scientific and technological fields</h4>
                     </div>
                     <p class="text-gray-600 telugu text-sm sm:text-base pl-14 sm:pl-16">అభివృద్ధి చెందుతున్న శాస్త్రీయ మరియు సాంకేతిక రంగాలలో తెలుగు వినియోగాన్ని బలోపేతం చేయడం</p>
                 </div>
@@ -562,42 +574,42 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 reveal-group">
                 <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors duration-300 group-hover:scale-110">
                         <i class="fas fa-satellite"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Autonomous Navigation, 5G/6G & Future Wireless</h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-secondary transition-colors">Autonomous Navigation, 5G/6G & Future Wireless</h3>
                     <p class="text-gray-600 text-sm telugu">ఆటోనమస్ నావిగేషన్ మరియు నియంత్రణ వ్యవస్థలు</p>
                 </div>
 
                 <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors duration-300 group-hover:scale-110">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">AI in Healthcare and Biomedical Engineering</h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-secondary transition-colors">AI in Healthcare and Biomedical Engineering</h3>
                     <p class="text-gray-600 text-sm telugu">హెల్త్ కేర్ అండ్ బయోమెడికల్ అభియాంత్రిక శాస్త్రం లో ఏఐ</p>
                 </div>
 
                 <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors duration-300 group-hover:scale-110">
                         <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Sensor Networks and Real-Time Data Analysis</h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-secondary transition-colors">Sensor Networks and Real-Time Data Analysis</h3>
                     <p class="text-gray-600 text-sm telugu">సెన్సార్ నెట్ వర్క్ లు మరియు రియల్ టైమ్ డేటా విశ్లేషణ</p>
                 </div>
 
                 <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors duration-300 group-hover:scale-110">
                         <i class="fas fa-microchip"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Current Research topics in VLSI and Embedded Systems</h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-secondary transition-colors">Current Research topics in VLSI and Embedded Systems</h3>
                     <p class="text-gray-600 text-sm telugu">VLSI మరియు Embedded Systemsలో ప్రస్తుత పరిశోధనా అంశాలు</p>
                 </div>
 
                 <div class="reveal-item glass-card bg-gray-50 rounded-2xl p-6 border border-gray-100 group md:col-span-2 lg:col-span-1">
-                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-secondary group-hover:text-white transition-colors duration-300 group-hover:scale-110">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Any other Relevant Topics but not limited to</h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-secondary transition-colors">Any other Relevant Topics but not limited to</h3>
                     <p class="text-gray-600 text-sm telugu">ప్రస్తుత పరిశోధన, పరిశ్రమ అవసరాలకు అనుగుణంగా ఇతర అంశాలు</p>
                 </div>
             </div>
@@ -629,11 +641,11 @@
                 <div class="relative border-l-2 sm:border-l-4 border-gray-700 ml-4 sm:ml-0 md:border-l-0 md:border-t-4 md:flex md:justify-around pt-6 md:pt-12 reveal-group">
                     
                     <div class="reveal-item mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
-                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg">
+                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg group-hover:scale-110">
                             <i class="fas fa-paper-plane text-gray-400 group-hover:text-white text-sm md:text-base"></i>
                         </div>
                         <div class="md:text-center mt-2 px-2">
-                            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Paper Submission Deadline</h4>
+                            <h4 class="text-base sm:text-lg font-bold text-white mb-1 group-hover:text-accent transition-colors">Paper Submission Deadline</h4>
                             <p class="text-gray-400 telugu text-xs sm:text-sm mb-2 sm:mb-3">పత్ర సమర్పణ చివరి తేదీ</p>
                             <p class="text-accent font-bold text-lg sm:text-xl mb-0.5">01 Sept 2026</p>
                             <p class="telugu text-xs text-gray-500">01 సెప్టెంబర్ 2026</p>
@@ -641,11 +653,11 @@
                     </div>
 
                     <div class="reveal-item mb-10 md:mb-0 relative pl-8 md:pl-0 w-full md:w-1/3 group">
-                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg">
+                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-gray-800 border-4 border-gray-600 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all z-10 shadow-lg group-hover:scale-110">
                             <i class="fas fa-check-double text-gray-400 group-hover:text-white text-sm md:text-base"></i>
                         </div>
                         <div class="md:text-center mt-2 px-2">
-                            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Acceptance Notification</h4>
+                            <h4 class="text-base sm:text-lg font-bold text-white mb-1 group-hover:text-accent transition-colors">Acceptance Notification</h4>
                             <p class="text-gray-400 telugu text-xs sm:text-sm mb-2 sm:mb-3">ఆమోద సమాచారం</p>
                             <p class="text-accent font-bold text-lg sm:text-xl mb-0.5">15 Oct 2026</p>
                             <p class="telugu text-xs text-gray-500">15 అక్టోబర్ 2026</p>
@@ -653,11 +665,11 @@
                     </div>
 
                     <div class="reveal-item relative pl-8 md:pl-0 w-full md:w-1/3 group">
-                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-primary border-4 border-blue-400 flex items-center justify-center z-10 shadow-lg shadow-blue-500/50">
-                            <i class="fas fa-calendar-day text-white text-sm md:text-base"></i>
+                        <div class="absolute -left-[25px] sm:-left-[27px] md:left-1/2 md:-ml-[20px] md:-top-[68px] w-12 h-12 md:w-10 md:h-10 rounded-full bg-primary border-4 border-blue-400 flex items-center justify-center z-10 shadow-lg shadow-blue-500/50 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-calendar-day text-white text-sm md:text-base animate-pulse"></i>
                         </div>
                         <div class="md:text-center mt-2 px-2">
-                            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Conference Dates</h4>
+                            <h4 class="text-base sm:text-lg font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">Conference Dates</h4>
                             <p class="text-gray-400 telugu text-xs sm:text-sm mb-2 sm:mb-3">సదస్సు తేదీలు</p>
                             <p class="text-accent font-bold text-lg sm:text-xl mb-0.5">20-21 Nov 2026</p>
                             <p class="telugu text-xs text-gray-500">20-21 నవంబర్ 2026</p>
@@ -785,17 +797,17 @@
 
                     <div class="divide-y divide-gray-100">
                         <!-- Day 1: Morning -->
-                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors">
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors group">
                             <div class="sm:w-1/4 shrink-0">
-                                <span class="font-bold text-secondary text-base sm:text-lg block">Morning Session</span>
+                                <span class="font-bold text-secondary text-base sm:text-lg block group-hover:text-primary transition-colors">Morning Session</span>
                                 <span class="text-gray-500 telugu text-xs sm:text-sm block mt-1">ఉదయం సెషన్</span>
                             </div>
                             <div class="sm:w-3/4">
-                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Technical Track I: Autonomous Navigation and Control Systems</h5>
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors">Technical Track I: Autonomous Navigation and Control Systems</h5>
                                 
-                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base">
+                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base transform group-hover:shadow-sm transition-all">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-microphone-alt text-accent mt-1"></i>
+                                        <i class="fas fa-microphone-alt text-accent mt-1 group-hover:animate-bounce"></i>
                                         <div>
                                             <p class="text-gray-800"><span class="font-bold text-primary">Speaker</span> <span class="telugu text-xs text-gray-500">(వక్త)</span>: Sri. P. Raghavendra Rao <span class="telugu text-xs text-gray-600 ml-1">శ్రీ పి. రాఘవేంద్రరావు</span></p>
                                             <p class="text-xs text-gray-500 mt-0.5">Former Associate Director, CHESS DRDO</p>
@@ -814,17 +826,17 @@
                         </div>
 
                         <!-- Day 1: Afternoon -->
-                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors">
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors group">
                             <div class="sm:w-1/4 shrink-0">
-                                <span class="font-bold text-secondary text-base sm:text-lg block">Afternoon Session</span>
+                                <span class="font-bold text-secondary text-base sm:text-lg block group-hover:text-primary transition-colors">Afternoon Session</span>
                                 <span class="text-gray-500 telugu text-xs sm:text-sm block mt-1">మధ్యాహ్నం సెషన్</span>
                             </div>
                             <div class="sm:w-3/4">
-                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Technical Track II: AI in Healthcare and Biomedical Engineering</h5>
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors">Technical Track II: AI in Healthcare and Biomedical Engineering</h5>
                                 
-                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base">
+                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base transform group-hover:shadow-sm transition-all">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-microphone-alt text-accent mt-1"></i>
+                                        <i class="fas fa-microphone-alt text-accent mt-1 group-hover:animate-bounce"></i>
                                         <div>
                                             <p class="text-gray-800"><span class="font-bold text-primary">Speaker</span> <span class="telugu text-xs text-gray-500">(వక్త)</span>: Dr. N. Jagan Mohan <span class="telugu text-xs text-gray-600 ml-1">డా. ఎన్. జగన్ మోహన్</span></p>
                                             <p class="text-xs text-gray-500 mt-0.5">Specialist Data Scientist, Spicarts.ai, Hyderabad</p>
@@ -861,17 +873,17 @@
 
                     <div class="divide-y divide-gray-100">
                         <!-- Day 2: Morning -->
-                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors">
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors group">
                             <div class="sm:w-1/4 shrink-0">
-                                <span class="font-bold text-secondary text-base sm:text-lg block">Morning Session</span>
+                                <span class="font-bold text-secondary text-base sm:text-lg block group-hover:text-primary transition-colors">Morning Session</span>
                                 <span class="text-gray-500 telugu text-xs sm:text-sm block mt-1">ఉదయం సెషన్</span>
                             </div>
                             <div class="sm:w-3/4">
-                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Technical Track III: Sensor Networks and Real-Time Data Analysis</h5>
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors">Technical Track III: Sensor Networks and Real-Time Data Analysis</h5>
                                 
-                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base">
+                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base transform group-hover:shadow-sm transition-all">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-microphone-alt text-accent mt-1"></i>
+                                        <i class="fas fa-microphone-alt text-accent mt-1 group-hover:animate-bounce"></i>
                                         <div>
                                             <p class="text-gray-800"><span class="font-bold text-primary">Speaker</span> <span class="telugu text-xs text-gray-500">(వక్త)</span>: Dr. M. Shyam Sunder <span class="telugu text-xs text-gray-600 ml-1">డా. ఎం. శ్యామ్ సుందర్</span></p>
                                             <p class="text-xs text-gray-500 mt-0.5">Associate Professor, OUCE, OU</p>
@@ -890,17 +902,17 @@
                         </div>
 
                         <!-- Day 2: Afternoon -->
-                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors">
+                        <div class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:bg-gray-50 transition-colors group">
                             <div class="sm:w-1/4 shrink-0">
-                                <span class="font-bold text-secondary text-base sm:text-lg block">Afternoon Session</span>
+                                <span class="font-bold text-secondary text-base sm:text-lg block group-hover:text-primary transition-colors">Afternoon Session</span>
                                 <span class="text-gray-500 telugu text-xs sm:text-sm block mt-1">మధ్యాహ్నం సెషన్</span>
                             </div>
                             <div class="sm:w-3/4">
-                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Technical Track IV: 5G/6G and Future Wireless communication</h5>
+                                <h5 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-secondary transition-colors">Technical Track IV: 5G/6G and Future Wireless communication</h5>
                                 
-                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base">
+                                <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 space-y-3 text-sm sm:text-base transform group-hover:shadow-sm transition-all">
                                     <div class="flex items-start gap-3">
-                                        <i class="fas fa-microphone-alt text-accent mt-1"></i>
+                                        <i class="fas fa-microphone-alt text-accent mt-1 group-hover:animate-bounce"></i>
                                         <div>
                                             <p class="text-gray-800"><span class="font-bold text-primary">Speaker</span> <span class="telugu text-xs text-gray-500">(వక్త)</span>: Sri T V Prakash Rao <span class="telugu text-xs text-gray-600 ml-1">శ్రీ టి.వి. ప్రకాష్ రావు</span></p>
                                             <p class="text-xs text-gray-500 mt-0.5">Scientist G, DRDO (Rtd)</p>
@@ -934,55 +946,55 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto reveal-group">
-                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm group">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent z-0"></div>
+                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10 group-hover:scale-110 transition-transform duration-300 group-hover:text-primary"></i>
                         <span class="absolute bottom-4 left-4 z-10 bg-primary text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Track I <span class="telugu ml-1 font-normal opacity-80 lowercase">విభాగం</span></span>
                     </div>
-                    <div class="p-5 text-center flex flex-col h-full">
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Sri. P. Raghavendra Rao</h4>
+                    <div class="p-5 text-center flex flex-col h-full bg-white group-hover:bg-blue-50/30 transition-colors">
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Sri. P. Raghavendra Rao</h4>
                         <p class="text-gray-600 text-xs sm:text-sm mb-2">Former Associate Director, CHESS DRDO</p>
-                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-200">శ్రీ పి. రాఘవేంద్రరావు</p>
+                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-100">శ్రీ పి. రాఘవేంద్రరావు</p>
                     </div>
                 </div>
 
-                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm group">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent z-0"></div>
+                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10 group-hover:scale-110 transition-transform duration-300 group-hover:text-secondary"></i>
                         <span class="absolute bottom-4 left-4 z-10 bg-secondary text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Track II <span class="telugu ml-1 font-normal opacity-80 lowercase">విభాగం</span></span>
                     </div>
-                    <div class="p-5 text-center flex flex-col h-full">
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Dr. N. Jagan Mohan</h4>
+                    <div class="p-5 text-center flex flex-col h-full bg-white group-hover:bg-blue-50/30 transition-colors">
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1 group-hover:text-secondary transition-colors">Dr. N. Jagan Mohan</h4>
                         <p class="text-gray-600 text-xs sm:text-sm mb-2">Specialist Data Scientist, Spicarts.ai, Hyderabad</p>
-                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-200">డా. ఎన్. జగన్ మోహన్</p>
+                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-100">డా. ఎన్. జగన్ మోహన్</p>
                     </div>
                 </div>
 
-                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm group">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent z-0"></div>
+                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10 group-hover:scale-110 transition-transform duration-300 group-hover:text-accent"></i>
                         <span class="absolute bottom-4 left-4 z-10 bg-accent text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Track III <span class="telugu ml-1 font-normal opacity-80 lowercase">విభాగం</span></span>
                     </div>
-                    <div class="p-5 text-center flex flex-col h-full">
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Dr. M. Shyam Sunder</h4>
+                    <div class="p-5 text-center flex flex-col h-full bg-white group-hover:bg-amber-50/30 transition-colors">
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1 group-hover:text-accent transition-colors">Dr. M. Shyam Sunder</h4>
                         <p class="text-gray-600 text-xs sm:text-sm mb-2">Associate Professor, OUCE, OU</p>
-                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-200">డా. ఎం. శ్యామ్ సుందర్</p>
+                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-100">డా. ఎం. శ్యామ్ సుందర్</p>
                     </div>
                 </div>
 
-                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <div class="reveal-item glass-card bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm group">
                     <div class="h-40 bg-gray-200 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent z-0"></div>
+                        <i class="fas fa-user-tie text-5xl text-gray-400 z-10 group-hover:scale-110 transition-transform duration-300 group-hover:text-green-600"></i>
                         <span class="absolute bottom-4 left-4 z-10 bg-green-600 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Track IV <span class="telugu ml-1 font-normal opacity-80 lowercase">విభాగం</span></span>
                     </div>
-                    <div class="p-5 text-center flex flex-col h-full">
-                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Sri T V Prakash Rao</h4>
+                    <div class="p-5 text-center flex flex-col h-full bg-white group-hover:bg-green-50/30 transition-colors">
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1 group-hover:text-green-600 transition-colors">Sri T V Prakash Rao</h4>
                         <p class="text-gray-600 text-xs sm:text-sm mb-2">Scientist G, DRDO (Rtd)</p>
-                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-200">శ్రీ టి.వి. ప్రకాష్ రావు</p>
+                        <p class="telugu text-gray-500 text-xs mt-auto pt-2 border-t border-gray-100">శ్రీ టి.వి. ప్రకాష్ రావు</p>
                     </div>
                 </div>
             </div>
@@ -1000,8 +1012,8 @@
             </div>
 
             <!-- Proceedings Spotlight Card -->
-            <div class="max-w-4xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-16 shadow-sm glass-card">
-                <div class="w-32 h-44 sm:w-40 sm:h-52 bg-white shadow-md border border-gray-200 rounded-lg flex flex-col items-center justify-center shrink-0 relative overflow-hidden group">
+            <div class="max-w-4xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-16 shadow-sm glass-card group">
+                <div class="w-32 h-44 sm:w-40 sm:h-52 bg-white shadow-md border border-gray-200 rounded-lg flex flex-col items-center justify-center shrink-0 relative overflow-hidden group-hover:shadow-lg transition-shadow">
                     <div class="absolute inset-0 bg-gradient-to-br from-primary to-blue-800 opacity-10"></div>
                     <i class="fas fa-book-open text-4xl sm:text-5xl text-primary group-hover:scale-110 transition-transform mb-2"></i>
                     <span class="font-bold text-primary text-xs sm:text-sm">JCSE</span>
@@ -1011,7 +1023,7 @@
                     <div class="inline-flex items-center gap-2 bg-white border border-gray-200 px-3 py-1 rounded-full text-xs font-semibold text-gray-600 mb-3 shadow-sm">
                         <i class="fas fa-barcode text-secondary"></i> ISSN: 2583-9055
                     </div>
-                    <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">RCETE 2025 Proceedings</h4>
+                    <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">RCETE 2025 Proceedings</h4>
                     <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-3">The inaugural edition of RCETE was a grand success. All selected papers were successfully published in <span class="font-bold text-primary">The Journal of Computational Science and Engineering (JCSE)</span>.</p>
                     
                     <p class="text-gray-600 telugu text-sm mb-5">మొదటి ప్రాంతీయ సదస్సు ప్రొసీడింగ్స్ విజయవంతంగా ప్రచురించబడ్డాయి.</p>
@@ -1047,35 +1059,35 @@
                 <h4 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Moments from RCETE 2025 <span class="telugu font-normal text-base text-gray-500 block mt-1">గత సదస్సు చిత్రమాలిక</span></h4>
                 
                 <div id="gallery-container" class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 pt-2 px-2 sm:px-4 hide-scrollbar w-full reveal-group">
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-1.jpg" alt="RCETE 2025 Conference Audience Seated" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+1'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-1.jpg" alt="RCETE 2025 Conference Audience Seated" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+1'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-2.jpg" alt="RCETE 2025 Keynote Speaker Presenting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+2'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-2.jpg" alt="RCETE 2025 Keynote Speaker Presenting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+2'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-3.jpg" alt="RCETE 2025 Expert Panel Discussion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+3'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-3.jpg" alt="RCETE 2025 Expert Panel Discussion" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+3'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-4.jpg" alt="RCETE 2025 Attendees Networking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+4'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-4.jpg" alt="RCETE 2025 Attendees Networking" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+4'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-5.jpg" alt="RCETE 2025 Technical Paper Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+5'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-5.jpg" alt="RCETE 2025 Technical Paper Presentation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+5'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-6.jpg" alt="RCETE 2025 Audience Listening to Speech" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+6'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-6.jpg" alt="RCETE 2025 Audience Listening to Speech" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+6'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-7.jpg" alt="RCETE 2025 Research Discussion Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+7'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-7.jpg" alt="RCETE 2025 Research Discussion Session" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+7'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-8.jpg" alt="RCETE 2025 Main Conference Event Hall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+8'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-8.jpg" alt="RCETE 2025 Main Conference Event Hall" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+8'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-9.jpg" alt="RCETE 2025 Certificate and Award Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+9'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-9.jpg" alt="RCETE 2025 Certificate and Award Ceremony" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+9'">
                     </div>
-                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group border border-gray-100 bg-white relative">
-                        <img src="photo-10.jpg" alt="RCETE 2025 Organizing Team Group Photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+10'">
+                    <div class="reveal-item shrink-0 w-72 sm:w-80 h-48 sm:h-56 snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group border border-gray-100 bg-white relative">
+                        <img src="photo-10.jpg" alt="RCETE 2025 Organizing Team Group Photo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://placehold.co/800x600/f3f4f6/1e3a8a?text=Photo+10'">
                     </div>
                 </div>
                 
@@ -1107,86 +1119,86 @@
 
             <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden w-full lg:w-full glass-card reveal-group">
                 <ul class="divide-y divide-gray-100">
-                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group">
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 text-secondary rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-crown"></i></div>
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 text-secondary rounded-full flex items-center justify-center text-xl shrink-0 group-hover:bg-secondary group-hover:text-white group-hover:scale-110 transition-all duration-300"><i class="fas fa-crown"></i></div>
                             <div>
                                 <p class="text-xs sm:text-sm font-bold text-secondary uppercase tracking-wider mb-0.5">Chief Patron</p>
                                 <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">ప్రధాన పోషకులు</p>
                             </div>
                         </div>
                         <div class="pl-14 sm:pl-0 sm:text-right">
-                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Sri. N. Subash</h4>
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">Sri. N. Subash</h4>
                             <p class="text-gray-600 text-xs sm:text-sm mb-0.5">President, CBIT</p>
                             <p class="text-gray-500 telugu text-xs sm:text-sm">శ్రీ. ఎన్.సుభాష్. ప్రెసిడెంట్, సీబీఐటీ.</p>
                         </div>
                     </li>
-                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group">
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-star"></i></div>
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-xl shrink-0 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-300"><i class="fas fa-star"></i></div>
                             <div>
                                 <p class="text-xs sm:text-sm font-bold text-blue-500 uppercase tracking-wider mb-0.5">Patron</p>
                                 <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">పోషకులు</p>
                             </div>
                         </div>
                         <div class="pl-14 sm:pl-0 sm:text-right">
-                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Prof. C. V. Narasimhulu</h4>
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">Prof. C. V. Narasimhulu</h4>
                             <p class="text-gray-600 text-xs sm:text-sm mb-0.5">Principal, CBIT</p>
                             <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య సి.వి.నరసింహులు, ప్రిన్సిపల్, సీబీఐటీ.</p>
                         </div>
                     </li>
-                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group">
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-user-tie"></i></div>
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0 group-hover:bg-gray-600 group-hover:text-white group-hover:scale-110 transition-all duration-300"><i class="fas fa-user-tie"></i></div>
                             <div>
                                 <p class="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-0.5">Advisor</p>
                                 <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సలహాదారు</p>
                             </div>
                         </div>
                         <div class="pl-14 sm:pl-0 sm:text-right">
-                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Prof. N.V. Koteswara Rao</h4>
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">Prof. N.V. Koteswara Rao</h4>
                             <p class="text-gray-600 text-xs sm:text-sm mb-0.5">Director-IQAC, CBIT</p>
                             <p class="text-gray-500 telugu text-xs sm:text-sm">ఆచార్య ఎన్.వి.కోటేశ్వరరావు, సంచాలకుడు-ఐక్యూఏసీ, సీబీఐటీ.</p>
                         </div>
                     </li>
-                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group">
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-user-tie"></i></div>
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center text-xl shrink-0 group-hover:bg-gray-600 group-hover:text-white group-hover:scale-110 transition-all duration-300"><i class="fas fa-user-tie"></i></div>
                             <div>
                                 <p class="text-xs sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-0.5">Advisor</p>
                                 <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సలహాదారు</p>
                             </div>
                         </div>
                         <div class="pl-14 sm:pl-0 sm:text-right">
-                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Dr. K. Vasanth</h4>
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">Dr. K. Vasanth</h4>
                             <p class="text-gray-600 text-xs sm:text-sm mb-0.5">HoD-ECE, CBIT</p>
                             <p class="text-gray-500 telugu text-xs sm:text-sm">డా|| కె.వసంత్, ఈసీఈ శాఖ అధిపతి, సీబీఐటీ.</p>
                         </div>
                     </li>
-                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group">
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-amber-50 text-accent rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-users-cog"></i></div>
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-amber-50 text-accent rounded-full flex items-center justify-center text-xl shrink-0 group-hover:bg-accent group-hover:text-white group-hover:scale-110 transition-all duration-300"><i class="fas fa-users-cog"></i></div>
                             <div>
                                 <p class="text-xs sm:text-sm font-bold text-accent uppercase tracking-wider mb-0.5">Coordinator</p>
                                 <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సమన్వయకర్త</p>
                             </div>
                         </div>
                         <div class="pl-14 sm:pl-0 sm:text-right">
-                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Dr. T. Sridher</h4>
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-accent transition-colors">Dr. T. Sridher</h4>
                             <p class="text-gray-600 text-xs sm:text-sm mt-1 mb-0.5">Asst. Professor, ECE</p>
                             <p class="text-gray-500 telugu text-xs sm:text-sm">డా|| టి.శ్రీధర్, అధ్యాపకుడు, ఈసీఈ.</p>
                         </div>
                     </li>
-                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <li class="reveal-item p-4 sm:p-6 md:p-8 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group">
                         <div class="flex items-center gap-3 sm:gap-4">
-                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-xl shrink-0"><i class="fas fa-user-friends"></i></div>
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center text-xl shrink-0 group-hover:bg-green-500 group-hover:text-white group-hover:scale-110 transition-all duration-300"><i class="fas fa-user-friends"></i></div>
                             <div>
                                 <p class="text-xs sm:text-sm font-bold text-green-500 uppercase tracking-wider mb-0.5">Co-Coordinator</p>
                                 <p class="text-[10px] sm:text-xs text-gray-500 telugu mb-0">సహ సమన్వయకర్త</p>
                             </div>
                         </div>
                         <div class="pl-14 sm:pl-0 sm:text-right">
-                            <h4 class="text-lg sm:text-xl font-bold text-gray-900">Dr. D. Nagadevi</h4>
+                            <h4 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Dr. D. Nagadevi</h4>
                             <p class="text-gray-600 text-xs sm:text-sm mt-1 mb-0.5">Asst. Professor, ECE</p>
                             <p class="text-gray-500 telugu text-xs sm:text-sm">డా|| డి.నాగదేవి, అధ్యాపకురాలు, ఈసీఈ.</p>
                         </div>
@@ -1208,18 +1220,18 @@
 
             <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-10 border border-white/20 shadow-2xl glass-card reveal-group">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="reveal-item bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
-                        <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center text-lg mb-3 shadow-md"><i class="fas fa-user-tie"></i></div>
-                        <h4 class="font-bold text-lg mb-1">Dr. T. Sridher</h4>
+                    <div class="reveal-item bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 hover:-translate-y-1 transition-all shadow-sm hover:shadow-lg group">
+                        <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center text-lg mb-3 shadow-md group-hover:scale-110 transition-transform"><i class="fas fa-user-tie"></i></div>
+                        <h4 class="font-bold text-lg mb-1 group-hover:text-accent transition-colors">Dr. T. Sridher</h4>
                         <p class="text-xs text-blue-200 mb-3">Coordinator, Asst. Professor, ECE</p>
                         <p class="text-xs text-gray-300 telugu mb-4">డా|| టి.శ్రీధర్, సమన్వయకర్త</p>
                         <a href="tel:8801206497" class="mt-auto inline-flex items-center gap-2 bg-white text-primary hover:bg-accent hover:text-white px-5 py-2 rounded-full font-semibold text-sm transition-colors shadow-sm">
                             <i class="fas fa-phone-alt"></i> 8801206497
                         </a>
                     </div>
-                    <div class="reveal-item bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
-                        <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center text-lg mb-3 shadow-md"><i class="fas fa-user-friends"></i></div>
-                        <h4 class="font-bold text-lg mb-1">Dr. D. Nagadevi</h4>
+                    <div class="reveal-item bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col items-center text-center hover:bg-white/10 hover:-translate-y-1 transition-all shadow-sm hover:shadow-lg group">
+                        <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center text-lg mb-3 shadow-md group-hover:scale-110 transition-transform"><i class="fas fa-user-friends"></i></div>
+                        <h4 class="font-bold text-lg mb-1 group-hover:text-secondary transition-colors">Dr. D. Nagadevi</h4>
                         <p class="text-xs text-blue-200 mb-3">Co-Coordinator, Asst. Professor, ECE</p>
                         <p class="text-xs text-gray-300 telugu mb-4">డా|| డి.నాగదేవి, సహ సమన్వయకర్త</p>
                         <a href="tel:9704111749" class="mt-auto inline-flex items-center gap-2 bg-white text-primary hover:bg-secondary hover:text-white px-5 py-2 rounded-full font-semibold text-sm transition-colors shadow-sm">
@@ -1241,11 +1253,11 @@
             </div>
 
             <div class="max-w-4xl mx-auto space-y-4 reveal-group">
-                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
-                            <h4 class="font-bold text-gray-900">What is the Registration Fee?</h4>
+                            <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">What is the Registration Fee?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">నమోదు రుసుము ఎంత?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
@@ -1256,11 +1268,11 @@
                     </div>
                 </div>
 
-                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
-                            <h4 class="font-bold text-gray-900">Will selected papers be published?</h4>
+                            <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Will selected papers be published?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">ఎంపిక చేసిన పత్రాలు ప్రచురించబడతాయా?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
@@ -1271,11 +1283,11 @@
                     </div>
                 </div>
 
-                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
-                            <h4 class="font-bold text-gray-900">Who can attend this conference?</h4>
+                            <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Who can attend this conference?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">ఈ సదస్సుకు ఎవరు హాజరు కావచ్చు?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
@@ -1286,11 +1298,11 @@
                     </div>
                 </div>
 
-                <div class="reveal-item glass-card bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
                         onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
                         <div>
-                            <h4 class="font-bold text-gray-900">Can I present my research paper in Telugu?</h4>
+                            <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Can I present my research paper in Telugu?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">నేను నా పరిశోధనా పత్రాన్ని తెలుగులో ప్రెజెంట్ చేయవచ్చా?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
@@ -1298,6 +1310,25 @@
                     <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
                         <p class="text-gray-700 font-medium">Yes! Under the AICTE VAANI scheme, presentations and research publications promoting Telugu in engineering and sciences are highly encouraged.</p>
                         <p class="text-sm text-gray-600 telugu mt-2">అవును! AICTE VAANI పథకం కింద, ఇంజనీరింగ్ మరియు విజ్ఞాన శాస్త్రాలలో తెలుగును ప్రోత్సహించే ప్రెజెంటేషన్లు మరియు పరిశోధనా ప్రచురణలు ఎంతగానో ప్రోత్సహించబడతాయి.</p>
+                    </div>
+                </div>
+                
+                <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
+                    <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
+                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
+                        <div>
+                            <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Whom should I contact for more details?</h4>
+                            <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">మరిన్ని వివరాల కోసం నేను ఎవరిని సంప్రదించాలి?</p>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
+                        <p class="text-gray-700 mb-2">You can contact the conference coordinators:</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:8801206497" class="hover:underline font-semibold">Dr. T. Sridher: 8801206497</a></li>
+                            <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:9704111749" class="hover:underline font-semibold">Dr. D. Nagadevi: 9704111749</a></li>
+                        </ul>
+                        <p class="text-sm text-gray-600 telugu mt-3">మీరు సమన్వయకర్తలను సంప్రదించవచ్చు: డా|| టి.శ్రీధర్ (8801206497), డా|| డి.నాగదేవి (9704111749).</p>
                     </div>
                 </div>
             </div>
@@ -1309,7 +1340,7 @@
             <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 mb-8 sm:mb-12 border-b border-blue-800 pb-8 sm:pb-12 text-center lg:text-left">
                 <div class="w-full lg:w-1/2">
                     <div class="flex flex-col items-center lg:items-start gap-4 mb-4">
-                        <img src="CBIT-LOGO.png" alt="CBIT Logo" class="h-16 sm:h-20 md:h-24 w-auto object-contain bg-white rounded-lg p-2 shadow-md"
+                        <img src="CBIT-LOGO.png" alt="CBIT Logo" class="h-16 sm:h-20 md:h-24 w-auto object-contain bg-white rounded-lg p-2 shadow-md transform hover:scale-105 transition-transform"
                             onerror="this.outerHTML='<div class=\'h-16 sm:h-20 md:h-24 px-4 bg-white rounded-lg flex items-center justify-center text-primary font-bold text-lg sm:text-xl shadow-md\'>CBIT</div>'">
                         <div>
                             <h2 class="font-bold text-xl sm:text-2xl mt-2">RCETE <span class="text-accent">2026</span></h2>
@@ -1325,8 +1356,8 @@
                 <div class="w-full lg:w-1/2 lg:text-right flex flex-col items-center lg:items-end mt-4 lg:mt-0">
                     <p class="text-white font-semibold mb-1 text-sm sm:text-base">Department of ECE, Hyderabad - 500 075</p>
                     <p class="text-blue-300 text-xs sm:text-sm telugu mb-4 sm:mb-6">ఈసీఈ విభాగం, హైదరాబాద్ -500 075</p>
-                    <a href="https://www.cbit.ac.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent hover:text-white transition-colors text-xs sm:text-sm font-medium border border-accent/50 hover:border-white px-5 py-2.5 rounded-full shadow-sm hover:shadow-md">
-                        Visit Institute Website <i class="fas fa-external-link-alt ml-2"></i>
+                    <a href="https://www.cbit.ac.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent hover:text-white transition-colors text-xs sm:text-sm font-medium border border-accent/50 hover:border-white px-5 py-2.5 rounded-full shadow-sm hover:shadow-md group">
+                        Visit Institute Website <i class="fas fa-external-link-alt ml-2 group-hover:animate-bounce"></i>
                         <span class="telugu text-[9px] font-normal ml-2 opacity-80 border-l border-accent/50 pl-2">సంస్థ వెబ్‌సైట్‌ను సందర్శించండి</span>
                     </a>
                 </div>
@@ -1421,8 +1452,9 @@
 
                 navItems.forEach(item => {
                     item.classList.remove("nav-active", "text-primary");
+                    item.classList.remove("active-section"); // For fallback if any
                     if (item.getAttribute("data-nav-target") === current) {
-                        item.classList.add("nav-active", "text-primary");
+                        item.classList.add("nav-active", "text-primary", "active-section");
                     }
                 });
             });
@@ -1499,6 +1531,7 @@
             const navbar = document.getElementById('navbar');
             if (navbar) {
                 window.addEventListener('scroll', () => {
+                    // Force the background to always be white, just toggle the shadow intensity
                     if (window.scrollY > 20) {
                         navbar.classList.add('shadow-lg');
                         navbar.classList.remove('shadow-md');
