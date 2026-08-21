@@ -90,11 +90,14 @@
             overflow: hidden;
             display: inline-block;
             vertical-align: bottom;
+            padding-bottom: 0.2em; /* Prevents clipping of letter tails (g, y, p) and Telugu characters */
+            margin-bottom: -0.2em; /* Keeps layout spacing intact */
         }
         .text-reveal-inner {
-            display: block;
+            display: inline-block; /* Changed to inline-block to tightly wrap the gradient text */
             transform: translateY(110%);
             opacity: 0;
+            padding-bottom: 0.1em; /* Extra safeguard for gradient clipping */
         }
         .text-reveal-inner.active {
             animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -397,7 +400,7 @@
                     </span>
                 </div>
 
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-snug">
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner delay-200">2nd Regional Conference in</span></span> <br class="hidden sm:block" />
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner delay-300 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-accent">Emerging Trends in Engineering</span></span>
                 </h1>
