@@ -127,12 +127,54 @@
         }
 
         /* Glassmorphism Tilt Card Effect */
+        :root {
+            --spring-easing: linear(0, 0.016 0.5%, 0.06 1%, 0.226 2%, 1.116 5.4%, 1.375 6.6%, 1.527 7.7%, 1.565 8.2%, 1.585 8.8%, 1.581 9.3%, 1.559 9.8%, 1.458 10.9%, 0.937 14.3%, 0.784 15.5%, 0.693 16.6%, 0.67 17.1%, 0.657 17.7%, 0.671 18.7%, 0.729 19.8%, 1.042 23.3%, 1.13 24.5%, 1.182 25.6%, 1.201 26.7%, 1.192 27.7%, 1.156 28.8%, 0.977 32.2%, 0.925 33.4%, 0.894 34.5%, 0.882 35.6%, 0.887 36.6%, 0.907 37.7%, 1.045 42.4%, 1.069 44.5%, 1.059 46.3%, 0.979 50.9%, 0.96 53.4%, 0.966 55.3%, 1.013 59.9%, 1.024 62.3%, 0.986 71.2%, 1.008 79.9%, 0.995 88.9%, 1);
+        }
         .glass-card {
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            transition: transform 0.6s ease-out, box-shadow 0.3s ease;
+            transition-timing-function: var(--spring-easing), ease;
             transform-style: preserve-3d;
         }
         .glass-card:hover {
+            transform: scale(1.025);
             box-shadow: 0 15px 35px -5px rgba(30, 58, 138, 0.15), 0 8px 10px -5px rgba(30, 58, 138, 0.1);
+        }
+
+        /* Typography Text Wrapping */
+        h1, h2, h3, h4, h5, h6 {
+            text-wrap: balance;
+        }
+        p {
+            text-wrap: pretty;
+        }
+
+        /* Native CSS Scroll Parallax (with View Timeline) */
+        @supports (animation-timeline: view()) {
+            .parallax-bg {
+                animation: parallax-scroll auto linear;
+                animation-timeline: view();
+                animation-range: exit -20% exit 120%;
+            }
+            @keyframes parallax-scroll {
+                from { transform: translateY(0); }
+                to { transform: translateY(12%); }
+            }
+        }
+
+        /* Gallery Linear Gradient Mask */
+        #gallery-container {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+        }
+
+        /* FAQ Smooth Grid Accordion */
+        .faq-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .faq-content.open {
+            grid-template-rows: 1fr;
         }
 
     </style>
@@ -142,8 +184,7 @@
 
 <body class="bg-gray-50 text-gray-800 antialiased selection:bg-secondary selection:text-white relative">
 
-    <!-- Reading Progress Bar -->
-    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent to-yellow-300 z-[100] w-0 transition-all duration-150 ease-out shadow-[0_0_10px_rgba(245,158,11,0.7)]"></div>
+
 
     <!-- Solid White Navbar -->
     <nav class="fixed w-full z-50 transition-shadow duration-300 bg-white shadow-md" id="navbar">
@@ -1259,80 +1300,100 @@
             <div class="max-w-4xl mx-auto space-y-4 reveal-group">
                 <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
+                        onclick="toggleFAQ(this)">
                         <div>
                             <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">What is the Registration Fee?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">నమోదు రుసుము ఎంత?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
-                        <p class="text-gray-700 font-medium"><span class="text-secondary"><i class="fas fa-check-circle mr-2"></i>Zero Registration Fee.</span> The conference is fully sponsored by AICTE VAANI 3.0.</p>
-                        <p class="text-sm text-gray-600 telugu mt-2">శూన్య నమోదుపత్ర రుసుము. ఈ సదస్సు పూర్తిగా AICTE VAANI ద్వారా స్పాన్సర్ చేయబడింది.</p>
+                    <div class="faq-content bg-gray-50 border-t border-gray-100">
+                        <div class="overflow-hidden">
+                            <div class="p-4 sm:p-6">
+                                <p class="text-gray-700 font-medium"><span class="text-secondary"><i class="fas fa-check-circle mr-2"></i>Zero Registration Fee.</span> The conference is fully sponsored by AICTE VAANI 3.0.</p>
+                                <p class="text-sm text-gray-600 telugu mt-2">శూన్య నమోదుపత్ర రుసుము. ఈ సదస్సు పూర్తిగా AICTE VAANI ద్వారా స్పాన్సర్ చేయబడింది.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
+                        onclick="toggleFAQ(this)">
                         <div>
                             <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Will selected papers be published?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">ఎంపిక చేసిన పత్రాలు ప్రచురించబడతాయా?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
-                        <p class="text-gray-700 font-medium">Yes. Selected papers will be published in conference proceedings with an ISBN Number.</p>
-                        <p class="text-sm text-gray-600 telugu mt-2">అవును. ఎంపిక చేయబడ్డ పరిశోధనా పత్రాలు ఐఎస్బీఎన్ నెంబరుతో కాన్ఫరెన్స్ ప్రొసీడింగ్స్‌లో ప్రచురించబడతాయి.</p>
+                    <div class="faq-content bg-gray-50 border-t border-gray-100">
+                        <div class="overflow-hidden">
+                            <div class="p-4 sm:p-6">
+                                <p class="text-gray-700 font-medium">Yes. Selected papers will be published in conference proceedings with an ISBN Number.</p>
+                                <p class="text-sm text-gray-600 telugu mt-2">అవును. ఎంపిక చేయబడ్డ పరిశోధనా పత్రాలు ఐఎస్బీఎన్ నెంబరుతో కాన్ఫరెన్స్ ప్రొసీడింగ్స్‌లో ప్రచురించబడతాయి.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
+                        onclick="toggleFAQ(this)">
                         <div>
                             <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Who can attend this conference?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">ఈ సదస్సుకు ఎవరు హాజరు కావచ్చు?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
-                        <p class="text-gray-700 font-medium">Faculty members, researchers, industry professionals, and students interested in engineering and Telugu technical communication can attend.</p>
-                        <p class="text-sm text-gray-600 telugu mt-2">అభియాంత్రిక శాస్త్రం మరియు తెలుగు సాంకేతిక సంభాషణలపై ఆసక్తి ఉన్న అధ్యాపకులు, పరిశోధకులు, పరిశ్రమ నిపుణులు మరియు విద్యార్థులు హాజరు కావచ్చు.</p>
+                    <div class="faq-content bg-gray-50 border-t border-gray-100">
+                        <div class="overflow-hidden">
+                            <div class="p-4 sm:p-6">
+                                <p class="text-gray-700 font-medium">Faculty members, researchers, industry professionals, and students interested in engineering and Telugu technical communication can attend.</p>
+                                <p class="text-sm text-gray-600 telugu mt-2">అభియాంత్రిక శాస్త్రం మరియు తెలుగు సాంకేతిక సంభాషణలపై ఆసక్తి ఉన్న అధ్యాపకులు, పరిశోధకులు, పరిశ్రమ నిపుణులు మరియు విద్యార్థులు హాజరు కావచ్చు.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
+                        onclick="toggleFAQ(this)">
                         <div>
                             <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Can I present my research paper in Telugu?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">నేను నా పరిశోధనా పత్రాన్ని తెలుగులో ప్రెజెంట్ చేయవచ్చా?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
-                        <p class="text-gray-700 font-medium">Yes! Under the AICTE VAANI scheme, presentations and research publications promoting Telugu in engineering and sciences are highly encouraged.</p>
-                        <p class="text-sm text-gray-600 telugu mt-2">అవును! AICTE VAANI పథకం కింద, ఇంజనీరింగ్ మరియు విజ్ఞాన శాస్త్రాలలో తెలుగును ప్రోత్సహించే ప్రెజెంటేషన్లు మరియు పరిశోధనా ప్రచురణలు ఎంతగానో ప్రోత్సహించబడతాయి.</p>
+                    <div class="faq-content bg-gray-50 border-t border-gray-100">
+                        <div class="overflow-hidden">
+                            <div class="p-4 sm:p-6">
+                                <p class="text-gray-700 font-medium">Yes! Under the AICTE VAANI scheme, presentations and research publications promoting Telugu in engineering and sciences are highly encouraged.</p>
+                                <p class="text-sm text-gray-600 telugu mt-2">అవును! AICTE VAANI పథకం కింద, ఇంజనీరింగ్ మరియు విజ్ఞాన శాస్త్రాలలో తెలుగును ప్రోత్సహించే ప్రెజెంటేషన్లు మరియు పరిశోధనా ప్రచురణలు ఎంతగానో ప్రోత్సహించబడతాయి.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="reveal-item bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
                     <button class="w-full text-left p-4 sm:p-6 focus:outline-none flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                        onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180');">
+                        onclick="toggleFAQ(this)">
                         <div>
                             <h4 class="font-bold text-gray-900 group-hover:text-primary transition-colors">Whom should I contact for more details?</h4>
                             <p class="text-xs sm:text-sm text-gray-500 telugu mt-1">మరిన్ని వివరాల కోసం నేను ఎవరిని సంప్రదించాలి?</p>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
                     </button>
-                    <div class="hidden p-4 sm:p-6 bg-gray-50 border-t border-gray-100">
-                        <p class="text-gray-700 mb-2">You can contact the conference coordinators:</p>
-                        <ul class="space-y-2">
-                            <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:8801206497" class="hover:underline font-semibold">Dr. T. Sridher: 8801206497</a></li>
-                            <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:9704111749" class="hover:underline font-semibold">Dr. D. Nagadevi: 9704111749</a></li>
-                        </ul>
-                        <p class="text-sm text-gray-600 telugu mt-3">మీరు సమన్వయకర్తలను సంప్రదించవచ్చు: డా|| టి.శ్రీధర్ (8801206497), డా|| డి.నాగదేవి (9704111749).</p>
+                    <div class="faq-content bg-gray-50 border-t border-gray-100">
+                        <div class="overflow-hidden">
+                            <div class="p-4 sm:p-6">
+                                <p class="text-gray-700 mb-2">You can contact the conference coordinators:</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:8801206497" class="hover:underline font-semibold">Dr. T. Sridher: 8801206497</a></li>
+                                    <li class="flex items-center text-gray-700"><i class="fas fa-phone-alt text-secondary mr-3 w-4"></i> <a href="tel:9704111749" class="hover:underline font-semibold">Dr. D. Nagadevi: 9704111749</a></li>
+                                </ul>
+                                <p class="text-sm text-gray-600 telugu mt-3">మీరు సమన్వయకర్తలను సంప్రదించవచ్చు: డా|| టి.శ్రీధర్ (8801206497), డా|| డి.నాగదేవి (9704111749).</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1391,6 +1452,14 @@
             if(icon) icon.classList.toggle('rotate-180');
         };
 
+        // Setup FAQ Smooth Accordion
+        window.toggleFAQ = function(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            content.classList.toggle('open');
+            if (icon) icon.classList.toggle('rotate-180');
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             
             // 1. Initialize Particles.js (Constellation Web)
@@ -1417,28 +1486,22 @@
                 });
             }
 
-            // 2. Reading Progress Bar & Parallax Backgrounds
-            const progressBar = document.getElementById('progress-bar');
-            const parallaxBgs = document.querySelectorAll('.parallax-bg');
-
-            window.addEventListener('scroll', () => {
-                requestAnimationFrame(() => {
-                    // Update Progress Bar
-                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                    const scrolled = (winScroll / height) * 100;
-                    if(progressBar) progressBar.style.width = scrolled + "%";
-
-                    // Update Parallax Backgrounds
-                    parallaxBgs.forEach(bg => {
-                        const speed = bg.getAttribute('data-speed') || 0.4;
-                        // Calculate offset relative to the section's position to prevent jumping
-                        const sectionTop = bg.closest('section').offsetTop;
-                        const scrollOffset = winScroll - sectionTop;
-                        bg.style.transform = `translateY(${scrollOffset * speed}px)`;
+            // 2. Scroll-Driven Parallax Backgrounds (Fallback for browsers without native support like Firefox)
+            const supportsScrollAnimations = window.CSS && CSS.supports('animation-timeline', 'scroll()');
+            if (!supportsScrollAnimations) {
+                const parallaxBgs = document.querySelectorAll('.parallax-bg');
+                window.addEventListener('scroll', () => {
+                    requestAnimationFrame(() => {
+                        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                        parallaxBgs.forEach(bg => {
+                            const speed = bg.getAttribute('data-speed') || 0.4;
+                            const sectionTop = bg.closest('section').offsetTop;
+                            const scrollOffset = winScroll - sectionTop;
+                            bg.style.transform = `translateY(${scrollOffset * speed}px)`;
+                        });
                     });
                 });
-            });
+            }
 
             // 3. Scroll Spy for Active Nav Links
             const sections = document.querySelectorAll("section[data-nav-group]");
